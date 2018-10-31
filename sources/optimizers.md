@@ -242,14 +242,3 @@ __References__
 - [Nadam report](http://cs229.stanford.edu/proj2015/054_report.pdf)
 - [On the importance of initialization and momentum in deep learning](http://www.cs.toronto.edu/~fritz/absps/momentum.pdf)
 
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L687)</span>
-### TFOptimizer
-
-```python
-keras.optimizers.TFOptimizer(optimizer)
-```
-
-Wrapper class for native TensorFlow optimizers.
-

@@ -14,43 +14,6 @@ model.add(Dense(64,
 
 The following built-in initializers are available as part of the `keras.initializers` module:
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L229)</span>
-### Orthogonal
-
-```python
-keras.initializers.Orthogonal(gain=1.0, seed=None)
-```
-
-Initializer that generates a random orthogonal matrix.
-
-__Arguments__
-
-- __gain__: Multiplicative factor to apply to the orthogonal matrix.
-- __seed__: A Python integer. Used to seed the random generator.
-
-__References__
-
-Saxe et al., http://arxiv.org/abs/1312.6120
-
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L266)</span>
-### Identity
-
-```python
-keras.initializers.Identity(gain=1.0)
-```
-
-Initializer that generates the identity matrix.
-
-Only use for square 2D matrices.
-
-__Arguments__
-
-- __gain__: Multiplicative factor to apply to the identity matrix.
-
-----
-
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L14)</span>
 ### Initializer
 
@@ -192,6 +155,43 @@ __Raises__
 
 - __ValueError__: In case of an invalid value for the "scale", mode" or
   "distribution" arguments.
+
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L229)</span>
+### Orthogonal
+
+```python
+keras.initializers.Orthogonal(gain=1.0, seed=None)
+```
+
+Initializer that generates a random orthogonal matrix.
+
+__Arguments__
+
+- __gain__: Multiplicative factor to apply to the orthogonal matrix.
+- __seed__: A Python integer. Used to seed the random generator.
+
+__References__
+
+Saxe et al., http://arxiv.org/abs/1312.6120
+
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L266)</span>
+### Identity
+
+```python
+keras.initializers.Identity(gain=1.0)
+```
+
+Initializer that generates the identity matrix.
+
+Only use for square 2D matrices.
+
+__Arguments__
+
+- __gain__: Multiplicative factor to apply to the identity matrix.
 
 ----
 
