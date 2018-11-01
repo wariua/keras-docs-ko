@@ -14,7 +14,7 @@ pages:
 - Why use Keras: why-use-keras.md
 - 배워 보기:
   - 순차 모델 소개: getting-started/sequential-model-guide.md
-  - Guide to the Functional API: getting-started/functional-api-guide.md
+  - 함수형 API 소개: getting-started/functional-api-guide.md
   - FAQ: getting-started/faq.md
 - Models:
   - About Keras models: models/about-keras-models.md
@@ -38,7 +38,7 @@ pages:
   - Sequence Preprocessing: preprocessing/sequence.md
   - Text Preprocessing: preprocessing/text.md
   - Image Preprocessing: preprocessing/image.md
-- Losses: losses.md
+- 손실: losses.md
 - Metrics: metrics.md
 - Optimizers: optimizers.md
 - Activations: activations.md
