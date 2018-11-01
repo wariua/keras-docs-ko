@@ -20,8 +20,8 @@ pages:
   - About Keras models: models/about-keras-models.md
   - Sequential: models/sequential.md
   - Model (functional API): models/model.md
-- Layers:
-  - About Keras layers: layers/about-keras-layers.md
+- 층:
+  - 케라스 층에 대해: layers/about-keras-layers.md
   - Core Layers: layers/core.md
   - Convolutional Layers: layers/convolutional.md
   - Pooling Layers: layers/pooling.md
