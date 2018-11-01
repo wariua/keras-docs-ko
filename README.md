@@ -10,3 +10,7 @@
     - `python autogen.py`
     - `mkdocs serve`    # 로컬 웹 서버 시작:  [localhost:8000](localhost:8000)
     - `mkdocs build`    # "site" 디렉터리에 정적 사이트 구축
+
+----
+
+저장소 clone 한 다음에 위 방식으로 웹 서버 돌려서 읽는 게 가장 편합니다. 아니면 그냥 github에서 그럭저럭 읽을 수도 있습니다.
