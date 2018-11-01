@@ -137,7 +137,7 @@ model.fit(data, one_hot_labels, epochs=10, batch_size=32)
 
 [예시 폴더](https://github.com/keras-team/keras/tree/master/examples)에서 실제 데이터셋에 대한 예시 모델들을 볼 수 있다.
 
-- CIFAR10 작은 이미 분류: 실시간 데이터 증대를 사용하는 합성곱 신경망(CNN)
+- CIFAR10 작은 이미 분류: 실시간 데이터 증대를 하는 합성곱 신경망(CNN)
 - IMDB 영화 감상평 감정 분류: 단어 열에 대한 LSTM
 - 로이터 뉴스 서비스 주제 분류: 다층 퍼셉트론(MLP)
 - MNIST 필기 숫자 분류: MLP & CNN
