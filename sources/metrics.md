@@ -1,7 +1,7 @@
 
-## Usage of metrics
+## 측정 사용법
 
-A metric is a function that is used to judge the performance of your model. Metric functions are to be supplied in the `metrics` parameter when a model is compiled.
+측정은 모델의 성능을 판단하는 데 쓰는 함수이다. 모델을 컴파일 할 때 `metrics` 매개변수로 측정 함수를 제공하게 된다.
 
 ```python
 model.compile(loss='mean_squared_error',
@@ -17,21 +17,20 @@ model.compile(loss='mean_squared_error',
               metrics=[metrics.mae, metrics.categorical_accuracy])
 ```
 
-A metric function is similar to a [loss function](/losses), except that the results from evaluating a metric are not used when training the model.
+측정 함수는 [손실 함수](/losses)와 비슷하되 측정 평가 결과가 모델 훈련에 쓰이지 않는다는 점이 다르다.
 
-You can either pass the name of an existing metric, or pass a Theano/TensorFlow symbolic function (see [Custom metrics](#custom-metrics)).
+기존 측정 방식의 이름을 줄 수도 있고 테아노/텐서플로우 심볼 함수([자체 측정 방식](#custom-metrics) 참고)의 이름을 줄 수도 있다.
 
-#### Arguments
-  - __y_true__: True labels. Theano/TensorFlow tensor.
-  - __y_pred__: Predictions. Theano/TensorFlow tensor of the same shape as y_true.
+#### 인자
+  - __y_true__: 맞는 레이블. 테아노/텐서플로우 텐서.
+  - __y_pred__: 예측. y_true와 형태가 같은 테아노/텐서플로우 텐서.
 
-#### Returns
-  Single tensor value representing the mean of the output array across all
-  datapoints.
+#### 반환
+  모든 데이터 포인터에 대한 출력 배열의 평균을 나타내는 텐서 값 하나.
 
 ----
 
-## Available metrics
+## 사용 가능한 측정 방식
 
 
 ### binary_accuracy
@@ -80,11 +79,11 @@ keras.metrics.sparse_top_k_categorical_accuracy(y_true, y_pred, k=5)
 
 ----
 
-## Custom metrics
+## 자체 측정 방식
 
-Custom metrics can be passed at the compilation step. The
-function would need to take `(y_true, y_pred)` as arguments and return
-a single tensor value.
+컴파일 단계에서 자체적인 측정 방식을 줄 수 있다.
+그 함수는 `(y_true, y_pred)`를 인자로 받아서
+텐서 값 하나를 반환해야 할 것이다.
 
 ```python
 import keras.backend as K
