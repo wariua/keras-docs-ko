@@ -39,7 +39,7 @@ pages:
   - Text Preprocessing: preprocessing/text.md
   - Image Preprocessing: preprocessing/image.md
 - 손실: losses.md
-- Metrics: metrics.md
+- 측정: metrics.md
 - Optimizers: optimizers.md
 - Activations: activations.md
 - Callbacks: callbacks.md
