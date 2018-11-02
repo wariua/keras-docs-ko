@@ -39,7 +39,7 @@ model = model_from_yaml(yaml_string)
 - `model.save_weights(filepath)`는 모델의 가중치를 HDF5 파일로 저장한다.
 - `model.load_weights(filepath, by_name=False)`는 (`save_weights()`로 만든) HDF5 파일에서 모델의 가중치를 불러온다. 기본적으로 구조가 바뀌어 있지 않아야 한다. 다른 (일부 층이 공통인) 구조로 가중치를 불러오려면 `by_name=True`를 써서 이름이 같은 층들만 불러오면 된다.
 
-참고: `h5py` 설치 방법에 대해선 FAQ의 [How can I install HDF5 or h5py to save my models in Keras?](/getting-started/faq/#how-can-i-install-HDF5-or-h5py-to-save-my-models-in-Keras)를 보라.
+참고: `h5py` 설치 방법에 대해선 FAQ의 [케라스에서 모델을 저장하기 위해 HDF5 내지 h5py를 설치하려면?](/getting-started/faq/#hdf5-h5py) 항목을 보라.
 
 
 ## 모델 서브클래스 만들기
