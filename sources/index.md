@@ -57,7 +57,7 @@ model.add(Dense(units=64, activation='relu', input_dim=100))
 model.add(Dense(units=10, activation='softmax'))
 ```
 
-모델이 괜찮다 싶으면 `.compile()`로 학습 과정을 구성하면 된다.
+모델이 괜찮다 싶으면 `.compile()`로 학습 과정을 설정하면 된다.
 
 ```python
 model.compile(loss='categorical_crossentropy',
@@ -154,9 +154,9 @@ sudo python setup.py install
 ------------------
 
 
-## 케라스 백엔드 구성하기
+## 케라스 백엔드 설정하기
 
-기본적으로 케라스에서는 텐서 조작 라이브러리로 텐서플로우를 쓴다. 케라스 백엔드 구성을 위해선 [이 설명](https://keras.io/backend/)을 따르면 된다.
+기본적으로 케라스에서는 텐서 조작 라이브러리로 텐서플로우를 쓴다. 케라스 백엔드 설정을 위해선 [이 설명](https://keras.io/backend/)을 따르면 된다.
 
 ------------------
 
