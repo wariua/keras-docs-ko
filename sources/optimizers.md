@@ -61,7 +61,7 @@ __인자__
 - __momentum__: float >= 0. 적절한 방향으로 SGD를 가속시키고
     진동을 감쇠시키는 매개변수.
 - __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
-- __nesterov__: boolean. 네스테로프 모멘텀 적용 여부.
+- __nesterov__: bool. 네스테로프 모멘텀 적용 여부.
 
 ----
 
@@ -175,7 +175,7 @@ __인자__
 - __beta_2__: float, 0 < beta < 1. 일반적으로 1에 가까움.
 - __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
 - __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
-- __amsgrad__: boolean. 논문 "On the Convergence of Adam and
+- __amsgrad__: bool. 논문 "On the Convergence of Adam and
     Beyond"에 있는 이 알고리즘의 AMSGrad 버전 적용 여부.
 
 __참고 자료__
