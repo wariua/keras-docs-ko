@@ -36,7 +36,7 @@
 ------------------
 
 
-## 시작: 30초에 보는 케라스
+## 써 보기: 30초에 보는 케라스
 
 케라스의 핵심 자료 구조는 __모델__인데 이는 층(layer)들을 조직하는 방식이다. 가장 간단한 종류의 모델은 [`Sequential`](https://keras.io/getting-started/sequential-model-guide) 모델로, 층들을 차례로 쌓는다. 더 복잡한 구조를 위해선 [케라스 함수형 API](https://keras.io/getting-started/functional-api-guide)를 써야 하는데, 그러면 층들로 어떤 그래프든 만들 수 있다.
 
