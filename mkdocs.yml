@@ -16,8 +16,8 @@ pages:
   - 순차 모델 소개: getting-started/sequential-model-guide.md
   - 함수형 API 소개: getting-started/functional-api-guide.md
   - FAQ: getting-started/faq.md
-- Models:
-  - About Keras models: models/about-keras-models.md
+- 모델:
+  - 케라스 모델에 대해: models/about-keras-models.md
   - Sequential: models/sequential.md
   - Model (functional API): models/model.md
 - 층:

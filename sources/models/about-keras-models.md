@@ -1,25 +1,25 @@
-# About Keras models
+# 케라스 모델에 대해
 
-There are two main types of models available in Keras: [the Sequential model](/models/sequential), and [the Model class used with the functional API](/models/model).
+케라스에서 사용 가능한 모델은 두 종류이다. [선형 모델](/models/sequential)과 [함수형 API로 사용하는 Model 클래스](/models/model)이다.
 
-These models have a number of methods and attributes in common:
+그 모델들에는 공통 메소드 및 속성이 몇 가지 있다.
 
-- `model.layers` is a flattened list of the layers comprising the model.
-- `model.inputs` is the list of input tensors of the model.
-- `model.outputs` is the list of output tensors of the model.
-- `model.summary()` prints a summary representation of your model. Shortcut for [utils.print_summary](/utils/#print_summary)
-- `model.get_config()` returns a dictionary containing the configuration of the model. The model can be reinstantiated from its config via:
+- `model.layers`는 모델을 이루는 층들을 한 줄로 늘어놓은 리스트다.
+- `model.inputs`는 모델의 입력 텐서들의 리스트다.
+- `model.outputs`는 모델의 출력 텐서들의 리스트다.
+- `model.summary()`는 모델 요약 설명을 찍는다. [utils.print_summary](/utils/#print_summary)의 바로가기.
+- `model.get_config()`는 모델 설정을 담은 딕셔너리를 반환한다. 다음처럼 설정을 가지고 모델을 또 만들 수 있다.
 
 ```python
 config = model.get_config()
 model = Model.from_config(config)
-# or, for Sequential:
+# Sequential인 경우:
 model = Sequential.from_config(config)
 ```
 
-- `model.get_weights()` returns a list of all weight tensors in the model, as Numpy arrays.
-- `model.set_weights(weights)` sets the values of the weights of the model, from a list of Numpy arrays. The arrays in the list should have the same shape as those returned by `get_weights()`.
-- `model.to_json()` returns a representation of the model as a JSON string. Note that the representation does not include the weights, only the architecture. You can reinstantiate the same model (with reinitialized weights) from the JSON string via:
+- `model.get_weights()`는 모델의 모든 가중치 텐서들의 리스트를 Numpy 배열들로 반환한다.
+- `model.set_weights(weights)`는 Numpy 배열들의 리스트를 가지고 모델의 가중치 값들을 설정한다. 리스트의 배열들이 `get_weights()`에서 반환하는 것과 같은 형태여야 한다.
+- `model.to_json()`은 모델의 JSON 문자열 표현을 반환한다. 참고로 그 표현에는 구조만 있고 가중치는 포함돼 있지 않다. 다음처럼 그 JSON 문자열을 가지고 동일한 (가중치들은 다시 초기화 된) 모델을 또 만들 수 있다.
 
 ```python
 from keras.models import model_from_json
@@ -27,7 +27,7 @@ from keras.models import model_from_json
 json_string = model.to_json()
 model = model_from_json(json_string)
 ```
-- `model.to_yaml()` returns a representation of the model as a YAML string. Note that the representation does not include the weights, only the architecture. You can reinstantiate the same model (with reinitialized weights) from the YAML string via:
+- `model.to_yaml()`은 모델의 YAML 문자열 표현을 반환한다. 참고로 그 표현에는 구조만 있고 가중치는 포함돼 있지 않다. 다음처럼 그 YAML 문자열을 가지고 동일한 (가중치들은 다시 초기화 된) 모델을 또 만들 수 있다.
 
 ```python
 from keras.models import model_from_yaml
@@ -36,18 +36,19 @@ yaml_string = model.to_yaml()
 model = model_from_yaml(yaml_string)
 ```
 
-- `model.save_weights(filepath)` saves the weights of the model as a HDF5 file.
-- `model.load_weights(filepath, by_name=False)` loads the weights of the model from a HDF5 file (created by `save_weights`). By default, the architecture is expected to be unchanged. To load weights into a different architecture (with some layers in common), use `by_name=True` to load only those layers with the same name.
+- `model.save_weights(filepath)`는 모델의 가중치를 HDF5 파일로 저장한다.
+- `model.load_weights(filepath, by_name=False)`는 (`save_weights()`로 만든) HDF5 파일에서 모델의 가중치를 불러온다. 기본적으로 구조가 바뀌어 있지 않아야 한다. 다른 (일부 층이 공통인) 구조로 가중치를 불러오려면 `by_name=True`를 써서 이름이 같은 층들만 불러오면 된다.
 
-Note: Please also see [How can I install HDF5 or h5py to save my models in Keras?](/getting-started/faq/#how-can-i-install-HDF5-or-h5py-to-save-my-models-in-Keras) in the FAQ for instructions on how to install `h5py`.
+참고: `h5py` 설치 방법에 대해선 FAQ의 [How can I install HDF5 or h5py to save my models in Keras?](/getting-started/faq/#how-can-i-install-HDF5-or-h5py-to-save-my-models-in-Keras)를 보라.
 
 
-## Model subclassing
+## 모델 서브클래스 만들기
 
-In addition to these two types of models, you may create your own fully-customizable models by subclassing the `Model` class
-and implementing your own forward pass in the `call` method (the `Model` subclassing API was introduced in Keras 2.2.0).
+그 두 가지 모델 외에 원하는 대로 바꿀 수 있는 자체 모델을 만들 수도 있다.
+`Model`의 서브클래스를 만들고 `call` 메소드에서 자체 진행 과정을 구현하면 된다.
+(`Model` 서브클래스 생성 API는 케라스 2.2.0에서 도입됐다.)
 
-Here's an example of a simple multi-layer perceptron model written as a `Model` subclass:
+다음은 `Model` 서브클래스로 작성된 간단한 다층 퍼셉트론 모델이다.
 
 ```python
 import keras
@@ -80,15 +81,15 @@ model.compile(...)
 model.fit(...)
 ```
 
-Layers are defined in `__init__(self, ...)`, and the forward pass is specified in `call(self, inputs)`. In `call`, you may specify custom losses by calling `self.add_loss(loss_tensor)` (like you would in a custom layer).
+`__init__(self, ...)`에서 층들을 정의하고 `call(self, inputs)`에서 진행 과정을 지정한다. `call`에서 `self.add_loss(loss_tensors)`를 호출해 (따로 만든 층에 하듯) 자체 제작한 손실을 지정할 수도 있다.
 
-In subclassed models, the model's topology is defined as Python code (rather than as a static graph of layers).
-That means the model's topology cannot be inspected or serialized. As a result, the following methods and attributes are **not available for subclassed models**:
+서브클래스 모델에서는 모델 구조를 (층들의 정적인 그래프가 아니라) 파이썬 코드로 정의한다.
+따라서 모델 구조를 조사하거나 직렬화 할 수가 없다. 그래서 서브클래스 모델에서는 다음 메소드와 속성을 **사용할 수 없다**.
 
-- `model.inputs` and `model.outputs`.
-- `model.to_yaml()` and `model.to_json()`
-- `model.get_config()` and `model.save()`.
+- `model.inputs` 및 `model.outputs`.
+- `model.to_yaml()` 및 `model.to_json()`
+- `model.get_config()` 및 `model.save()`.
 
-**Key point:** use the right API for the job. The `Model` subclassing API can provide you with greater flexbility for implementing complex models,
-but it comes at a cost (in addition to these missing features):
-it is more verbose, more complex, and has more opportunities for user errors. If possible, prefer using the functional API, which is more user-friendly.
+**핵심 포인트:** 할 일에 맞는 API를 사용하라. `Model` 서브클래스 API를 쓰면 복잡한 모델 구현에 필요한 더 큰 유연성을 얻을 수 있기는 하지만
+거기에는 (못 쓰게 되는 기능 말고도) 비용이 따른다.
+더 길고 더 복잡하며 사용자 오류가 생길 여지가 더 많아진다. 가능하면 사용자 친화적인 함수형 API를 쓰는 게 좋다.
