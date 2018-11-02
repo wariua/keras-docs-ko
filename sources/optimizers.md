@@ -1,7 +1,7 @@
 
-## Usage of optimizers
+## 옵티마이저 사용법
 
-An optimizer is one of the two arguments required for compiling a Keras model:
+옵티마이저는 케라스 모델 컴파일에 꼭 필요한 두 인자 중 하나이다.
 
 ```python
 from keras import optimizers
@@ -14,231 +14,226 @@ sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd)
 ```
 
-You can either instantiate an optimizer before passing it to `model.compile()` , as in the above example, or you can call it by its name. In the latter case, the default parameters for the optimizer will be used.
+위 예처럼 옵티마이저 인스턴스를 만들어서 `model.compile()`로 전달할 수도 있고 그냥 이름으로 호출할 수도 있다. 후자에서는 그 옵티마이저의 기본 매개변수들을 쓰게 된다.
 
 ```python
-# pass optimizer by name: default parameters will be used
+# 이름으로 옵티마이저 주기: 기본 매개변수 사용
 model.compile(loss='mean_squared_error', optimizer='sgd')
 ```
 
 ---
 
-## Parameters common to all Keras optimizers
+## 모든 케라스 옵티마이저에 공통인 매개변수
 
-The parameters `clipnorm` and `clipvalue` can be used with all optimizers to control gradient clipping:
+매개변수 `clipnorm`과 `clipvalue`는 모든 옵티마이저에서 경사 클리핑을 제어하는 데 쓸 수 있다.
 
 ```python
 from keras import optimizers
 
-# All parameter gradients will be clipped to
-# a maximum norm of 1.
+# 모든 매개변수 경사를 최대 norm 1로 자른다.
 sgd = optimizers.SGD(lr=0.01, clipnorm=1.)
 ```
 
 ```python
 from keras import optimizers
 
-# All parameter gradients will be clipped to
-# a maximum value of 0.5 and
-# a minimum value of -0.5.
+# 모든 매개변수 경사를 최댓값 0.5와
+# 최솟값 -0.5로 자른다.
 sgd = optimizers.SGD(lr=0.01, clipvalue=0.5)
 ```
 
 ---
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L157)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L157)</span>
 ### SGD
 
 ```python
 keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
 ```
 
-Stochastic gradient descent optimizer.
+확률적 경사 하강(stochastic gradient descent) 옵티마이저.
 
-Includes support for momentum,
-learning rate decay, and Nesterov momentum.
+모멘텀, 학습률 감쇄, 네스테로프 모멘텀 지원 포함.
 
-__Arguments__
+__인자__
 
-- __lr__: float >= 0. Learning rate.
-- __momentum__: float >= 0. Parameter that accelerates SGD
-    in the relevant direction and dampens oscillations.
-- __decay__: float >= 0. Learning rate decay over each update.
-- __nesterov__: boolean. Whether to apply Nesterov momentum.
+- __lr__: float >= 0. 학습률.
+- __momentum__: float >= 0. 적절한 방향으로 SGD를 가속시키고
+    진동을 감쇠시키는 매개변수.
+- __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
+- __nesterov__: boolean. 네스테로프 모멘텀 적용 여부.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L220)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L220)</span>
 ### RMSprop
 
 ```python
 keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
 ```
 
-RMSProp optimizer.
+RMSProp 옵티마이저.
 
-It is recommended to leave the parameters of this optimizer
-at their default values
-(except the learning rate, which can be freely tuned).
+이 옵티마이저의 매개변수들을 기본값 그대로
+두기를 권한다.
+(단 학습률은 마음대로 조정할 수 있다.)
 
-This optimizer is usually a good choice for recurrent
-neural networks.
+이 옵티마이저는 일반적으로 순환 신경망에 좋은 선택지이다.
 
-__Arguments__
+__인자__
 
-- __lr__: float >= 0. Learning rate.
+- __lr__: float >= 0. 학습률.
 - __rho__: float >= 0.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
+- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
 
-__References__
+__참고 자료__
 
 - [rmsprop: Divide the gradient by a running average of its recent magnitude](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L287)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L287)</span>
 ### Adagrad
 
 ```python
 keras.optimizers.Adagrad(lr=0.01, epsilon=None, decay=0.0)
 ```
 
-Adagrad optimizer.
+Adagrad 옵티마이저.
 
-Adagrad is an optimizer with parameter-specific learning rates,
-which are adapted relative to how frequently a parameter gets
-updated during training. The more updates a parameter receives,
-the smaller the updates.
+Adagrad는 매개변수별로 학습률이 있는 옵티마이저로,
+훈련 중 매개변수가 얼마나 자주 갱신되는가에 따라
+학습률을 조정한다. 매개변수가 많이 갱신될수록
+갱신 폭이 작아진다.
 
-It is recommended to leave the parameters of this optimizer
-at their default values.
+이 옵티마이저의 매개변수들을 기본값 그대로
+두기를 권한다.
 
-__Arguments__
+__인자__
 
-- __lr__: float >= 0. Initial learning rate.
-- __epsilon__: float >= 0. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
+- __lr__: float >= 0. 초기 학습률.
+- __epsilon__: float >= 0. `None`이면 `K.epsilon()` 사용.
+- __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
 
-__References__
+__참고 자료__
 
 - [Adaptive Subgradient Methods for Online Learning and Stochastic Optimization](http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L351)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L351)</span>
 ### Adadelta
 
 ```python
 keras.optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
 ```
 
-Adadelta optimizer.
+Adadelta 옵티마이저.
 
-Adadelta is a more robust extension of Adagrad
-that adapts learning rates based on a moving window of gradient updates,
-instead of accumulating all past gradients. This way, Adadelta continues
-learning even when many updates have been done. Compared to Adagrad, in the
-original version of Adadelta you don't have to set an initial learning
-rate. In this version, initial learning rate and decay factor can
-be set, as in most other Keras optimizers.
+Adadelta는 Adagrad를 더 견고하게 확장한 것으로,
+모든 과거 경사를 누적하는 대신 경사 갱신의 이동 윈도에 기반해서
+학습률을 조정한다. 그렇게 해서 Adadelta는 갱신이 많이 이뤄진
+상태에서도 계속 학습을 할 수 있다. Adagrad에서와 달리
+Adadelta 원래 버전에서는 초기 학습률을 설정할 필요가 없다.
+이 버전에서는 다른 대부분의 케라스 옵티마이저처럼
+초기 학습률과 감쇄 인자를 설정할 수 있다.
 
-It is recommended to leave the parameters of this optimizer
-at their default values.
+이 옵티마이저의 매개변수들을 기본값 그대로
+두기를 권한다.
 
-__Arguments__
+__인자__
 
-- __lr__: float >= 0. Initial learning rate, defaults to 1.
-    It is recommended to leave it at the default value.
-- __rho__: float >= 0. Adadelta decay factor, corresponding to fraction of
-    gradient to keep at each time step.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Initial learning rate decay.
+- __lr__: float >= 0. 초기 학습률, 기본값은 1.
+    기본값 그대로 두기를 권한다.
+- __rho__: float >= 0. Adadelta 감쇄 인자. 각 time step에서
+    경사를 어느 비율만큼 남겨 둘 것인지에 해당.
+- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __decay__: float >= 0. 초기 학습률 감쇄.
 
-__References__
+__참고 자료__
 
 - [Adadelta - an adaptive learning rate method](http://arxiv.org/abs/1212.5701)
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L433)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L433)</span>
 ### Adam
 
 ```python
 keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
 ```
 
-Adam optimizer.
+Adam 옵티마이저.
 
-Default parameters follow those provided in the original paper.
+기본 매개변수 값들은 원논문에 제시된 값을 따른다.
 
-__Arguments__
+__인자__
 
-- __lr__: float >= 0. Learning rate.
-- __beta_1__: float, 0 < beta < 1. Generally close to 1.
-- __beta_2__: float, 0 < beta < 1. Generally close to 1.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
-- __amsgrad__: boolean. Whether to apply the AMSGrad variant of this
-    algorithm from the paper "On the Convergence of Adam and
-    Beyond".
+- __lr__: float >= 0. 학습률.
+- __beta_1__: float, 0 < beta < 1. 일반적으로 1에 가까움.
+- __beta_2__: float, 0 < beta < 1. 일반적으로 1에 가까움.
+- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
+- __amsgrad__: boolean. 논문 "On the Convergence of Adam and
+    Beyond"에 있는 이 알고리즘의 AMSGrad 버전 적용 여부.
 
-__References__
+__참고 자료__
 
 - [Adam - A Method for Stochastic Optimization](http://arxiv.org/abs/1412.6980v8)
 - [On the Convergence of Adam and Beyond](https://openreview.net/forum?id=ryQu7f-RZ)
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L522)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L522)</span>
 ### Adamax
 
 ```python
 keras.optimizers.Adamax(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0)
 ```
 
-Adamax optimizer from Adam paper's Section 7.
+Adam 논문 7절에서 온 Adamax 옵티마이저.
 
-It is a variant of Adam based on the infinity norm.
-Default parameters follow those provided in the paper.
+무한 norm을 기반으로 한 Adam의 변형 버전이다.
+기본 매개변수 값들은 논문에 제시된 값을 따른다.
 
-__Arguments__
+__인자__
 
-- __lr__: float >= 0. Learning rate.
-- __beta_1/beta_2__: floats, 0 < beta < 1. Generally close to 1.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
+- __lr__: float >= 0. 학습률.
+- __beta_1/beta_2__: floats, 0 < beta < 1. 일반적으로 1에 가까움.
+- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
 
-__References__
+__참고 자료__
 
 - [Adam - A Method for Stochastic Optimization](http://arxiv.org/abs/1412.6980v8)
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L599)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L599)</span>
 ### Nadam
 
 ```python
 keras.optimizers.Nadam(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.004)
 ```
 
-Nesterov Adam optimizer.
+네스테로프(Nesterov) Adam 옵티마이저.
 
-Much like Adam is essentially RMSprop with momentum,
-Nadam is Adam RMSprop with Nesterov momentum.
+Adam의 핵심이 RMSprop에 모멘텀을 더한 거라면
+Nadam은 Adam RMSprop에 네스테로프 모멘텀을 더한 것이다.
 
-Default parameters follow those provided in the paper.
-It is recommended to leave the parameters of this optimizer
-at their default values.
+기본 매개변수 값들은 논문에 제시된 값을 따른다.
+이 옵티마이저의 매개변수들을 기본값 그대로
+두기를 권한다.
 
-__Arguments__
+__인자__
 
-- __lr__: float >= 0. Learning rate.
-- __beta_1/beta_2__: floats, 0 < beta < 1. Generally close to 1.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
+- __lr__: float >= 0. 학습률.
+- __beta_1/beta_2__: floats, 0 < beta < 1. 일반적으로 1에 가까움.
+- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
 
-__References__
+__참고 자료__
 
-- [Nadam report](http://cs229.stanford.edu/proj2015/054_report.pdf)
+- [Nadam 보고서](http://cs229.stanford.edu/proj2015/054_report.pdf)
 - [On the importance of initialization and momentum in deep learning](http://www.cs.toronto.edu/~fritz/absps/momentum.pdf)
 
