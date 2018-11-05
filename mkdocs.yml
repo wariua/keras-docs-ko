@@ -41,7 +41,7 @@ pages:
 - 손실: losses.md
 - 측정: metrics.md
 - 옵티마이저: optimizers.md
-- Activations: activations.md
+- 활성: activations.md
 - Callbacks: callbacks.md
 - Datasets: datasets.md
 - Applications: applications.md
