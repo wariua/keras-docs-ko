@@ -1,22 +1,22 @@
 
-## Model visualization
+## 모델 시각화
 
-The `keras.utils.vis_utils` module provides utility functions to plot
-a Keras model (using `graphviz`).
+케라스 모델을 (`graphviz`로) 그려 주는 유틸리티 함수들을
+`keras.utils.vis_utils` 모듈에서 제공한다.
 
-This will plot a graph of the model and save it to a file:
+다음처럼 하면 모델의 그래프를 그려서 파일로 저장한다.
 ```python
 from keras.utils import plot_model
 plot_model(model, to_file='model.png')
 ```
 
-`plot_model` takes two optional arguments:
+`plot_model`은 선택적인 인자 두 개를 받는다.
 
-- `show_shapes` (defaults to False) controls whether output shapes are shown in the graph.
-- `show_layer_names` (defaults to True) controls whether layer names are shown in the graph.
+- `show_shapes`(기본값 False)는 그래프에 출력 형태를 표시할지를 제어한다.
+- `show_layer_names`(기본값 True)는 그래프에 층 이름을 표시할지를 제어한다.
 
-You can also directly obtain the `pydot.Graph` object and render it yourself,
-for example to show it in an ipython notebook :
+`pydot.Graph` 객체를 얻은 다음 그리기를 직접 할 수도 있다.
+예를 들어 ipython 노트북에 표시하려면:
 ```python
 from IPython.display import SVG
 from keras.utils.vis_utils import model_to_dot
@@ -24,16 +24,18 @@ from keras.utils.vis_utils import model_to_dot
 SVG(model_to_dot(model).create(prog='dot', format='svg'))
 ```
 
-## Training history visualization
+## 훈련 이력 시각화
 
-The `fit()` method on a Keras `Model` returns a `History` object. The `History.history` attribute is a dictionary recording training loss values and metrics values at successive epochs, as well as validation loss values and validation metrics values (if applicable). Here is a simple example using `matplotlib` to generate loss & accuracy plots for training & validation:
+케라스 `Model`의 `fit()` 메소드는 `History` 객체를 반환한다. `History.history` 속성은 
+연속된 에포크에서의 훈련 손실 값과 측정치 값, 그리고 (적용 가능한 경우) 검증 손실 값과
+검증 측정치 값을 기록한 딕셔너리이다. 다음은 `matplotlib`를 이용해 훈련 및 검증에 대한 손실 및 정확도 그래프를 만들어 내는 간단한 예이다.
 
 ```python
 import matplotlib.pyplot as plt
 
 history = model.fit(x, y, validation_split=0.25, epochs=50, batch_size=16, verbose=1)
 
-# Plot training & validation accuracy values
+# 훈련 및 검증 정확도 값 그리기
 plt.plot(history.history['acc'])
 plt.plot(history.history['val_acc'])
 plt.title('Model accuracy')
@@ -42,7 +44,7 @@ plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper left')
 plt.show()
 
-# Plot training & validation loss values
+# 훈련 및 검증 손실 값 그리기
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('Model loss')

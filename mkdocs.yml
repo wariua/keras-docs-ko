@@ -19,7 +19,7 @@ pages:
 - 모델:
   - 케라스 모델에 대해: models/about-keras-models.md
   - Sequential: models/sequential.md
-  - Model (functional API): models/model.md
+  - Model (함수형 API): models/model.md
 - 층:
   - 케라스 층에 대해: layers/about-keras-layers.md
   - Core Layers: layers/core.md
@@ -49,7 +49,7 @@ pages:
 - Initializers: initializers.md
 - Regularizers: regularizers.md
 - Constraints: constraints.md
-- Visualization: visualization.md
+- 시각화: visualization.md
 - Scikit-learn API: scikit-learn-api.md
 - Utils: utils.md
 - Contributing: contributing.md
