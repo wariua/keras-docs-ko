@@ -43,7 +43,7 @@ pages:
 - 옵티마이저: optimizers.md
 - 활성: activations.md
 - Callbacks: callbacks.md
-- Datasets: datasets.md
+- 데이터셋: datasets.md
 - Applications: applications.md
 - Backend: backend.md
 - Initializers: initializers.md
