@@ -357,7 +357,7 @@ model.fit(x, y, validation_split=0.2, callbacks=[early_stopping])
 
 ### 에포크마다 훈련/검증 손실/정확도를 기록하려면?
 
-`model.fit` 메소드가 `History` 콜백을 반환하는데 그 `history` 속성이 연속된 손실 및 기타 측정치들의 목록을 담고 있다.
+`model.fit` 메소드가 `History` 콜백을 반환하는데 그 `history` 속성이 연속된 손실 및 기타 지표들의 목록을 담고 있다.
 
 ```python
 hist = model.fit(x, y, validation_split=0.2)

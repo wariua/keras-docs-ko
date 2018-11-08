@@ -52,7 +52,7 @@ model.add(Dense(32, input_dim=784))
 
 - 옵티마이저. 기존 옵티마이저의 문자열 식별자(`rmsprop`나 `adagrad` 등)일 수도 있고 `Optimizer` 클래스의 인스턴스일 수도 있다. [옵티마이저](/optimizers) 참고.
 - 손실 함수. 모델에서 최소화하려 하는 목표이다. 기존 손실 함수의 문자열 식별자(`categorical_crossentropy`나 `mse` 등)일 수도 있고 목표 함수일 수도 있다. [손실](/losses) 참고.
-- 측정 방식 목록. 분류 문제라면 `metrics=['accuracy']`라고 설정하고 싶을 것이다. 기존 측정 방식의 문자열 식별자일 수도 있고 따로 만든 측정 함수일 수도 있다.
+- 지표 목록. 분류 문제라면 `metrics=['accuracy']`라고 설정하고 싶을 것이다. 기존 지표의 문자열 식별자일 수도 있고 따로 만든 지표 함수일 수도 있다.
 
 ```python
 # 다중 분류 문제
@@ -69,7 +69,7 @@ model.compile(optimizer='rmsprop',
 model.compile(optimizer='rmsprop',
               loss='mse')
 
-# 자체 측정 방식
+# 자체 지표
 import keras.backend as K
 
 def mean_pred(y_true, y_pred):

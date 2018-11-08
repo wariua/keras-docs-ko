@@ -26,9 +26,7 @@ SVG(model_to_dot(model).create(prog='dot', format='svg'))
 
 ## 훈련 이력 시각화
 
-케라스 `Model`의 `fit()` 메소드는 `History` 객체를 반환한다. `History.history` 속성은 
-연속된 에포크에서의 훈련 손실 값과 측정치 값, 그리고 (적용 가능한 경우) 검증 손실 값과
-검증 측정치 값을 기록한 딕셔너리이다. 다음은 `matplotlib`를 이용해 훈련 및 검증에 대한 손실 및 정확도 그래프를 만들어 내는 간단한 예이다.
+케라스 `Model`의 `fit()` 메소드는 `History` 객체를 반환한다. `History.history` 속성은 연속된 에포크에서의 훈련 손실 값과 지표 값, 그리고 (적용 가능한 경우) 검증 손실 값과 검증 지표 값을 기록한 딕셔너리이다. 다음은 `matplotlib`를 이용해 훈련 및 검증에 대한 손실 및 정확도 그래프를 만들어 내는 간단한 예이다.
 
 ```python
 import matplotlib.pyplot as plt
