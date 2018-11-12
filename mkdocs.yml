@@ -22,7 +22,7 @@ pages:
   - Model (함수형 API): models/model.md
 - 층:
   - 케라스 층에 대해: layers/about-keras-layers.md
-  - Core Layers: layers/core.md
+  - 기본 층: layers/core.md
   - Convolutional Layers: layers/convolutional.md
   - Pooling Layers: layers/pooling.md
   - Locally-connected Layers: layers/local.md
