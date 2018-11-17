@@ -42,7 +42,7 @@ pages:
 - 지표: metrics.md
 - 옵티마이저: optimizers.md
 - 활성: activations.md
-- Callbacks: callbacks.md
+- 콜백: callbacks.md
 - 데이터셋: datasets.md
 - Applications: applications.md
 - Backend: backend.md
