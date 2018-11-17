@@ -40,7 +40,7 @@ pages:
   - Image Preprocessing: preprocessing/image.md
 - 손실: losses.md
 - 지표: metrics.md
-- 옵티마이저: optimizers.md
+- 최적화: optimizers.md
 - 활성: activations.md
 - 콜백: callbacks.md
 - 데이터셋: datasets.md
