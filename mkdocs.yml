@@ -27,7 +27,7 @@ pages:
   - Pooling Layers: layers/pooling.md
   - Locally-connected Layers: layers/local.md
   - Recurrent Layers: layers/recurrent.md
-  - Embedding Layers: layers/embeddings.md
+  - Embedding 층: layers/embeddings.md
   - Merge Layers: layers/merge.md
   - Advanced Activations Layers: layers/advanced-activations.md
   - Normalization Layers: layers/normalization.md
