@@ -28,7 +28,7 @@ pages:
   - Locally-connected Layers: layers/local.md
   - Recurrent Layers: layers/recurrent.md
   - Embedding 층: layers/embeddings.md
-  - Merge Layers: layers/merge.md
+  - 병합 층: layers/merge.md
   - Advanced Activations Layers: layers/advanced-activations.md
   - Normalization Layers: layers/normalization.md
   - Noise layers: layers/noise.md

@@ -1,17 +1,17 @@
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L193)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L193)</span>
 ### Add
 
 ```python
 keras.layers.Add()
 ```
 
-Layer that adds a list of inputs.
+입력들의 목록으로 덧셈을 하는 층.
 
-It takes as input a list of tensors,
-all of the same shape, and returns
-a single tensor (also of the same shape).
+모두 같은 형태인 텐서들의 리스트를
+입력으로 받아서 (역시 같은 형태인)
+텐서 하나를 반환한다.
 
-__Examples__
+__예시__
 
 
 ```python
@@ -21,7 +21,7 @@ input1 = keras.layers.Input(shape=(16,))
 x1 = keras.layers.Dense(8, activation='relu')(input1)
 input2 = keras.layers.Input(shape=(32,))
 x2 = keras.layers.Dense(8, activation='relu')(input2)
-added = keras.layers.Add()([x1, x2])  # equivalent to added = keras.layers.add([x1, x2])
+added = keras.layers.Add()([x1, x2])  # added = keras.layers.add([x1, x2])와 동등
 
 out = keras.layers.Dense(4)(added)
 model = keras.models.Model(inputs=[input1, input2], outputs=out)
@@ -29,20 +29,20 @@ model = keras.models.Model(inputs=[input1, input2], outputs=out)
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L223)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L223)</span>
 ### Subtract
 
 ```python
 keras.layers.Subtract()
 ```
 
-Layer that subtracts two inputs.
+두 입력으로 빼기를 하는 층.
 
-It takes as input a list of tensors of size 2,
-both of the same shape, and returns a single tensor, (inputs[0] - inputs[1]),
-also of the same shape.
+형태가 같은 텐서들의 크기 2인 리스트를
+입력으로 받아서 역시 같은 형태인
+텐서 (inputs[0] - inputs[1])를 반환한다.
 
-__Examples__
+__예시__
 
 
 ```python
@@ -52,7 +52,7 @@ input1 = keras.layers.Input(shape=(16,))
 x1 = keras.layers.Dense(8, activation='relu')(input1)
 input2 = keras.layers.Input(shape=(32,))
 x2 = keras.layers.Dense(8, activation='relu')(input2)
-# Equivalent to subtracted = keras.layers.subtract([x1, x2])
+# subtracted = keras.layers.subtract([x1, x2])와 동등
 subtracted = keras.layers.Subtract()([x1, x2])
 
 out = keras.layers.Dense(4)(subtracted)
@@ -61,94 +61,93 @@ model = keras.models.Model(inputs=[input1, input2], outputs=out)
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L260)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L260)</span>
 ### Multiply
 
 ```python
 keras.layers.Multiply()
 ```
 
-Layer that multiplies (element-wise) a list of inputs.
+입력들의 목록으로 (항목별) 곱셈을 하는 층.
 
-It takes as input a list of tensors,
-all of the same shape, and returns
-a single tensor (also of the same shape).
+모두 같은 형태인 텐서들의 리스트를
+입력으로 받아서 (역시 같은 형태인)
+텐서 하나를 반환한다.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L275)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L275)</span>
 ### Average
 
 ```python
 keras.layers.Average()
 ```
 
-Layer that averages a list of inputs.
+입력들의 목록으로 평균을 내는 층.
 
-It takes as input a list of tensors,
-all of the same shape, and returns
-a single tensor (also of the same shape).
+모두 같은 형태인 텐서들의 리스트를
+입력으로 받아서 (역시 같은 형태인)
+텐서 하나를 반환한다.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L290)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L290)</span>
 ### Maximum
 
 ```python
 keras.layers.Maximum()
 ```
 
-Layer that computes the maximum (element-wise) a list of inputs.
+입력들의 목록으로 (항목별) 최댓값을 계산하는 층.
 
-It takes as input a list of tensors,
-all of the same shape, and returns
-a single tensor (also of the same shape).
+모두 같은 형태인 텐서들의 리스트를
+입력으로 받아서 (역시 같은 형태인)
+텐서 하나를 반환한다.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L320)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L320)</span>
 ### Concatenate
 
 ```python
 keras.layers.Concatenate(axis=-1)
 ```
 
-Layer that concatenates a list of inputs.
+입력들의 목록을 이어 붙이는 층.
 
-It takes as input a list of tensors,
-all of the same shape except for the concatenation axis,
-and returns a single tensor, the concatenation of all inputs.
+이어 붙이기 축을 제외하고 모두 같은 형태인
+텐서들의 리스트를 입력으로 받아서
+모든 입력을 접합한 텐서 하나를 반환한다.
 
-__Arguments__
+__인자__
 
-- __axis__: Axis along which to concatenate.
-- __**kwargs__: standard layer keyword arguments.
+- __axis__: 이어 붙여 나가는 축.
+- __**kwargs__: 층 표준 키워드 인자들.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L408)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L408)</span>
 ### Dot
 
 ```python
 keras.layers.Dot(axes, normalize=False)
 ```
 
-Layer that computes a dot product between samples in two tensors.
+두 텐서 표본들 간의 도트곱을 계산하는 층.
 
-E.g. if applied to a list of two tensors `a` and `b` of shape `(batch_size, n)`,
-the output will be a tensor of shape `(batch_size, 1)`
-where each entry `i` will be the dot product between
-`a[i]` and `b[i]`.
+가령 형태가 `(batch_size, n)`인 두 텐서 `a`와 `b`의 리스트에 적용하면
+출력은 형태가 `(batch_size, 1)`인 텐서 하나가 되고
+각 항목 `i`는 `a[i]`와 `b[i]`의 도트곱이 된다.
 
-__Arguments__
+__인자__
 
-- __axes__: Integer or tuple of integers,
-    axis or axes along which to take the dot product.
-- __normalize__: Whether to L2-normalize samples along the
-    dot product axis before taking the dot product.
-    If set to True, then the output of the dot product
-    is the cosine proximity between the two samples.
-- __**kwargs__: Standard layer keyword arguments.
+- __axes__: 정수 또는 정수들의 튜플.
+    이 축(들)을 따라 도트곱을 취함.
+- __normalize__: 도트곱을 취하기 전에 도트곱
+    축을 따라 표본들을 L2 정규화 할지 여부.
+    True로 설정 시 도트곱의 출력은
+    두 표본 간의 코사인 근접도이다.
+- __**kwargs__: 층 표준 키워드 인자들.
 
 ----
 
@@ -160,18 +159,18 @@ keras.layers.add(inputs)
 ```
 
 
-Functional interface to the `Add` layer.
+`Add` 층의 함수 인터페이스.
 
-__Arguments__
+__인자__
 
-- __inputs__: A list of input tensors (at least 2).
-- __**kwargs__: Standard layer keyword arguments.
+- __inputs__: (최소 2개인) 입력 텐서들의 리스트.
+- __**kwargs__: 층 표준 키워드 인자들.
 
-__Returns__
+__반환__
 
-A tensor, the sum of the inputs.
+입력들의 합인 텐서.
 
-__Examples__
+__예시__
 
 
 ```python
@@ -197,18 +196,18 @@ keras.layers.subtract(inputs)
 ```
 
 
-Functional interface to the `Subtract` layer.
+`Subtract` 층의 함수 인터페이스.
 
-__Arguments__
+__인자__
 
-- __inputs__: A list of input tensors (exactly 2).
-- __**kwargs__: Standard layer keyword arguments.
+- __inputs__: (정확히 2개인) 입력 텐서들의 리스트.
+- __**kwargs__: 층 표준 키워드 인자들.
 
-__Returns__
+__반환__
 
-A tensor, the difference of the inputs.
+입력들의 차인 텐서.
 
-__Examples__
+__예시__
 
 
 ```python
@@ -234,16 +233,16 @@ keras.layers.multiply(inputs)
 ```
 
 
-Functional interface to the `Multiply` layer.
+`Multiply` 층의 함수 인터페이스.
 
-__Arguments__
+__인자__
 
-- __inputs__: A list of input tensors (at least 2).
-- __**kwargs__: Standard layer keyword arguments.
+- __inputs__: (최소 2개인) 입력 텐서들의 리스트.
+- __**kwargs__: 층 표준 키워드 인자들.
 
-__Returns__
+__반환__
 
-A tensor, the element-wise product of the inputs.
+입력들의 항목별 곱인 텐서.
 
 ----
 
@@ -255,16 +254,16 @@ keras.layers.average(inputs)
 ```
 
 
-Functional interface to the `Average` layer.
+`Average` 층의 함수 인터페이스.
 
-__Arguments__
+__인자__
 
-- __inputs__: A list of input tensors (at least 2).
-- __**kwargs__: Standard layer keyword arguments.
+- __inputs__: (최소 2개인) 입력 텐서들의 리스트.
+- __**kwargs__: 층 표준 키워드 인자들.
 
-__Returns__
+__반환__
 
-A tensor, the average of the inputs.
+입력들의 평균인 텐서.
 
 ----
 
@@ -276,16 +275,16 @@ keras.layers.maximum(inputs)
 ```
 
 
-Functional interface to the `Maximum` layer.
+`Maximum` 층의 함수 인터페이스.
 
-__Arguments__
+__인자__
 
-- __inputs__: A list of input tensors (at least 2).
-- __**kwargs__: Standard layer keyword arguments.
+- __inputs__: (최소 2개인) 입력 텐서들의 리스트.
+- __**kwargs__: 층 표준 키워드 인자들.
 
-__Returns__
+__반환__
 
-A tensor, the element-wise maximum of the inputs.
+입력들의 항목별 최댓값인 텐서.
 
 ----
 
@@ -297,17 +296,17 @@ keras.layers.concatenate(inputs, axis=-1)
 ```
 
 
-Functional interface to the `Concatenate` layer.
+`Concatenate` 층의 함수 인터페이스.
 
-__Arguments__
+__인자__
 
-- __inputs__: A list of input tensors (at least 2).
-- __axis__: Concatenation axis.
-- __**kwargs__: Standard layer keyword arguments.
+- __inputs__: (최소 2개인) 입력 텐서들의 리스트.
+- __axis__: 접합 축.
+- __**kwargs__: 층 표준 키워드 인자들.
 
-__Returns__
+__반환__
 
-A tensor, the concatenation of the inputs alongside axis `axis`.
+축 `axis`를 따라 입력들을 접합한 텐서.
 
 ----
 
@@ -319,19 +318,19 @@ keras.layers.dot(inputs, axes, normalize=False)
 ```
 
 
-Functional interface to the `Dot` layer.
+`Dot` 층의 함수 인터페이스.
 
-__Arguments__
+__인자__
 
-- __inputs__: A list of input tensors (at least 2).
-- __axes__: Integer or tuple of integers,
-    axis or axes along which to take the dot product.
-- __normalize__: Whether to L2-normalize samples along the
-    dot product axis before taking the dot product.
-    If set to True, then the output of the dot product
-    is the cosine proximity between the two samples.
-- __**kwargs__: Standard layer keyword arguments.
+- __inputs__: (최소 2개인) 입력 텐서들의 리스트.
+- __axes__: 정수 또는 정수들의 튜플.
+    이 축(들)을 따라 도트곱을 취함.
+- __normalize__: 도트곱을 취하기 전에 도트곱
+    축을 따라 표본들을 L2 정규화 할지 여부.
+    True로 설정 시 도트곱의 출력은
+    두 표본 간의 코사인 근접도이다.
+- __**kwargs__: 층 표준 키워드 인자들.
 
-__Returns__
+__반환__
 
-A tensor, the dot product of the samples from the inputs.
+입력의 표본들의 도트곱인 텐서.
