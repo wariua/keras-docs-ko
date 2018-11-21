@@ -1,13 +1,13 @@
-# Applications
+# 응용 망
 
-Keras Applications are deep learning models that are made available alongside pre-trained weights.
-These models can be used for prediction, feature extraction, and fine-tuning.
+케라스 응용 망들은 미리 훈련된 가중치가 딸려 있어서 바로 사용 가능한 심층학습 모델들이다.
+이 모델들을 예측, 피쳐 추출, 미세 조정 등에 사용할 수 있다.
 
-Weights are downloaded automatically when instantiating a model. They are stored at `~/.keras/models/`.
+모델 인스턴스 생성 시에 가중치를 자동으로 내려받는다. 그 가중치들은 `~/.keras/models/`에 저장된다.
 
-## Available models
+## 쓸 수 있는 모델들
 
-### Models for image classification with weights trained on ImageNet:
+### ImageNet에서 가중치를 훈련한 이미지 분류 모델들:
 
 - [Xception](#xception)
 - [VGG16](#vgg16)
@@ -20,17 +20,18 @@ Weights are downloaded automatically when instantiating a model. They are stored
 - [NASNet](#nasnet)
 - [MobileNetV2](#mobilenetv2)
 
-All of these architectures are compatible with all the backends (TensorFlow, Theano, and CNTK), and upon instantiation the models will be built according to the image data format set in your Keras configuration file at `~/.keras/keras.json`. For instance, if you have set `image_data_format=channels_last`, then any model loaded from this repository will get built according to the TensorFlow data format convention, "Height-Width-Depth".
+이 구조들 전체가 모든 백엔드(텐서플로우, 테아노, CNTK)와 호환되며 인스턴스 생성 시 케라스 설정 파일 `~/.keras/keras.json`에 설정된 이미지 데이터 형식에 따라 모델이 구성된다. 예를 들어 `image_data_format=channels_last`라고 설정했다면 이 저장소로부터 적재하는 모델이 모두 텐서플로우의 주된 데이터 형식인 "높이-폭-깊이" 방식에 따라 구성된다.
 
-Note that:
-- For `Keras < 2.2.0`, The Xception model is only available for TensorFlow, due to its reliance on `SeparableConvolution` layers.
-- For `Keras < 2.1.5`, The MobileNet model is only available for TensorFlow, due to its reliance on `DepthwiseConvolution` layers.
+참고 사항:
+
+- `Keras < 2.2.0`에서, Xception 모델은 `SeparableConvolution` 층을 필요로 하기에 텐서플로우에만 사용 가능하다.
+- `Keras < 2.1.5`에서, MobileNet 모델은 `DepthwiseConvolution` 층을 필요로 하기에 텐서플로우에만 사용 가능하다.
 
 -----
 
-## Usage examples for image classification models
+## 이미지 분류 모델 사용 예
 
-### Classify ImageNet classes with ResNet50
+### ResNet50으로 ImageNet 클래스 분류하기
 
 ```python
 from keras.applications.resnet50 import ResNet50
@@ -47,13 +48,13 @@ x = np.expand_dims(x, axis=0)
 x = preprocess_input(x)
 
 preds = model.predict(x)
-# decode the results into a list of tuples (class, description, probability)
-# (one such list for each sample in the batch)
+# 결과를 튜플 (class, description, probability)의 리스트로 디코딩
+# (배치의 표본마다 그런 리스트가 하나씩 나옴)
 print('Predicted:', decode_predictions(preds, top=3)[0])
-# Predicted: [(u'n02504013', u'Indian_elephant', 0.82658225), (u'n01871265', u'tusker', 0.1122357), (u'n02504458', u'African_elephant', 0.061040461)]
+# 예측: [(u'n02504013', u'Indian_elephant', 0.82658225), (u'n01871265', u'tusker', 0.1122357), (u'n02504458', u'African_elephant', 0.061040461)]
 ```
 
-### Extract features with VGG16
+### VGG16으로 피쳐 추출하기
 
 ```python
 from keras.applications.vgg16 import VGG16
@@ -72,7 +73,7 @@ x = preprocess_input(x)
 features = model.predict(x)
 ```
 
-### Extract features from an arbitrary intermediate layer with VGG19
+### VGG19로 임의의 중간 층에서 피쳐 추출하기
 
 ```python
 from keras.applications.vgg19 import VGG19
@@ -93,7 +94,7 @@ x = preprocess_input(x)
 block4_pool_features = model.predict(x)
 ```
 
-### Fine-tune InceptionV3 on a new set of classes
+### 새로운 클래스 집합에 대해 InceptionV3 미세 조정하기
 
 ```python
 from keras.applications.inception_v3 import InceptionV3
@@ -102,75 +103,74 @@ from keras.models import Model
 from keras.layers import Dense, GlobalAveragePooling2D
 from keras import backend as K
 
-# create the base pre-trained model
+# 기반이 되는 사전 훈련 모델 생성
 base_model = InceptionV3(weights='imagenet', include_top=False)
 
-# add a global spatial average pooling layer
+# 전역 공간 평균 풀링 층 추가
 x = base_model.output
 x = GlobalAveragePooling2D()(x)
-# let's add a fully-connected layer
+# 완전 연결 층 추가
 x = Dense(1024, activation='relu')(x)
-# and a logistic layer -- let's say we have 200 classes
+# 로지스틱 층 -- 200가지 유형이 있다고 하자.
 predictions = Dense(200, activation='softmax')(x)
 
-# this is the model we will train
+# 이게 훈련시키게 될 모델
 model = Model(inputs=base_model.input, outputs=predictions)
 
-# first: train only the top layers (which were randomly initialized)
-# i.e. freeze all convolutional InceptionV3 layers
+# 처음에: (난수로 초기화 한) 위쪽 층들만 훈련시킨다.
+# 즉 합성곱인 InceptionV3 층들을 모두 얼려 둔다.
 for layer in base_model.layers:
     layer.trainable = False
 
-# compile the model (should be done *after* setting layers to non-trainable)
+# 모델 컴파일 (층들을 훈련 불가능하게 설정한 *후에* 해야 함)
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
 
-# train the model on the new data for a few epochs
+# 새 데이터로 몇 에포크 동안 모델 훈련
 model.fit_generator(...)
 
-# at this point, the top layers are well trained and we can start fine-tuning
-# convolutional layers from inception V3. We will freeze the bottom N layers
-# and train the remaining top layers.
+# 이 시점에서는 위쪽 층들이 잘 훈련되었으므로 Inception V3의 합성곱 층
+# 미세 조정을 시작할 수 있다. 아래의 N개 층을 얼려 두고 그 위의 나머지
+# 층들을 훈련시키게 된다.
 
-# let's visualize layer names and layer indices to see how many layers
-# we should freeze:
+# 층을 몇 개나 얼려야 하는지 보기 위해 층 이름과 층 번호를 표시해 보기
 for i, layer in enumerate(base_model.layers):
    print(i, layer.name)
 
-# we chose to train the top 2 inception blocks, i.e. we will freeze
-# the first 249 layers and unfreeze the rest:
+# Inception 블록들 중에 가장 위 2개를 순련시키기로 함. 즉 처음 249개
+# 층을 얼리고 나머지를 풀어 줌.
 for layer in model.layers[:249]:
    layer.trainable = False
 for layer in model.layers[249:]:
    layer.trainable = True
 
-# we need to recompile the model for these modifications to take effect
-# we use SGD with a low learning rate
+# 이 변경 내용들이 효과가 있으려면 모델을 다시 컴파일 해야 함
+# 낮은 학습률로 SGD 사용
 from keras.optimizers import SGD
 model.compile(optimizer=SGD(lr=0.0001, momentum=0.9), loss='categorical_crossentropy')
 
-# we train our model again (this time fine-tuning the top 2 inception blocks
-# alongside the top Dense layers
+# 모델 다시 훈련 (이번에는 위쪽 Dense 층들과 더불어 Inception 블록들 중
+# 가장 위 2개를 함께 미세 조정)
 model.fit_generator(...)
 ```
 
 
-### Build InceptionV3 over a custom input tensor
+### 커스텀 입력 텐서 위에 InceptionV3 구성하기
 
 ```python
 from keras.applications.inception_v3 import InceptionV3
 from keras.layers import Input
 
-# this could also be the output a different Keras model or layer
-input_tensor = Input(shape=(224, 224, 3))  # this assumes K.image_data_format() == 'channels_last'
+# 다른 케라스 모델이나 층의 출력일 수도 있음
+input_tensor = Input(shape=(224, 224, 3))  # K.image_data_format() == 'channels_last' 가정
 
 model = InceptionV3(input_tensor=input_tensor, weights='imagenet', include_top=True)
 ```
 
 -----
 
-# Documentation for individual models
+# 개별 모델 설명
 
-| Model | Size | Top-1 Accuracy | Top-5 Accuracy | Parameters | Depth |
+| 모델 | 크기 | Top-1 정확도 | Top-5 정확도 | 매개변수 | 깊이 |
 | ----- | ----: | --------------: | --------------: | ----------: | -----: |
 | [Xception](#xception) | 88 MB | 0.790 | 0.945 | 22,910,480 | 126 |
 | [VGG16](#vgg16) | 528 MB | 0.713 | 0.901 | 138,357,544 | 23 |
@@ -186,7 +186,7 @@ model = InceptionV3(input_tensor=input_tensor, weights='imagenet', include_top=T
 | [NASNetMobile](#nasnet) | 23 MB | 0.744 | 0.919 | 5,326,716 | - |
 | [NASNetLarge](#nasnet) | 343 MB | 0.825 | 0.960 | 88,949,818 | - |
 
-The top-1 and top-5 accuracy refers to the model's performance on the ImageNet validation dataset.
+Top-1 및 Top-5 정확도는 ImageNet 검증 데이터셋에 대한 모델 성능을 가리킨다.
 
 -----
 
@@ -198,52 +198,49 @@ The top-1 and top-5 accuracy refers to the model's performance on the ImageNet v
 keras.applications.xception.Xception(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
 ```
 
-Xception V1 model, with weights pre-trained on ImageNet.
+Xception V1 모델. ImageNet으로 가중치 사전 훈련.
 
-On ImageNet, this model gets to a top-1 validation accuracy of 0.790
-and a top-5 validation accuracy of 0.945.
+ImageNet에서 이 모델은 top-1 검증 정확도가 0.790,
+top-5 검증 정확도가 0.945이다.
 
-Note that this model only supports the data format `'channels_last'` (height, width, channels).
+이 모델은 데이터 형식 `'channels_last'`(높이, 폭, 채널)만 지원한다.
 
-The default input size for this model is 299x299.
+이 모델의 기본 입력 크기는 299x299이다.
 
-### Arguments
+### 인자
 
-- include_top: whether to include the fully-connected layer at the top of the network.
-- weights: one of `None` (random initialization) or `'imagenet'` (pre-training on ImageNet).
-- input_tensor: optional Keras tensor (i.e. output of `layers.Input()`) to use as image input for the model.
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(299, 299, 3)`.
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 71.
-    E.g. `(150, 150, 3)` would be one valid value.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model will be
-        the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a 2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images 
-    into, only to be specified if `include_top` is `True`, and 
-    if no `weights` argument is specified.
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet으로 사전 훈련).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸 케라스 텐서(즉 `layers.Input()`의 출력).
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(299, 299, 3)`이어야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 71보다 작지 않아야 함.
+    가령 `(150, 150, 3)`이 유효한 값.
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-### References
+### 참고 자료
 
 - [Xception: Deep Learning with Depthwise Separable Convolutions](https://arxiv.org/abs/1610.02357)
 
-### License
+### 라이선스
 
-These weights are trained by ourselves and are released under the MIT license.
+이 가중치는 우리가 훈련시킨 것이며 MIT 라이선스에 따라 공개되어 있다.
 
 
 -----
@@ -255,50 +252,47 @@ These weights are trained by ourselves and are released under the MIT license.
 keras.applications.vgg16.VGG16(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
 ```
 
-VGG16 model, with weights pre-trained on ImageNet.
+VGG16 모델. ImageNet으로 가중치 사전 훈련.
 
-This model can be built both with `'channels_first'` data format (channels, height, width) or `'channels_last'` data format (height, width, channels).
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
 
-The default input size for this model is 224x224.
+이 모델의 기본 입력 크기는 224x224이다.
 
-### Arguments
+### 인자
 
-- include_top: whether to include the 3 fully-connected layers at the top of the network.
-- weights: one of `None` (random initialization) or `'imagenet'` (pre-training on ImageNet).
-- input_tensor: optional Keras tensor (i.e. output of `layers.Input()`) to use as image input for the model.
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(224, 224, 3)` (with `'channels_last'` data format)
-    or `(3, 224, 224)` (with `'channels_first'` data format).
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 32.
-    E.g. `(200, 200, 3)` would be one valid value.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model will be
-        the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a 2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images 
-    into, only to be specified if `include_top` is `True`, and 
-    if no `weights` argument is specified.
+- include_top: 망 가장 위에 완전 연결 층 3개를 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet으로 사전 훈련).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸 케라스 텐서(즉 `layers.Input()`의 출력).
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 32보다 작지 않아야 함.
+    가령 `(200, 200, 3)`이 유효한 값.
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-### References
+### 참고 자료
 
-- [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556): please cite this paper if you use the VGG models in your work.
+- [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556): 작업물에 VGG 모델을 쓰는 경우 부디 이 논문을 인용해 달라.
 
-### License
+### 라이선스
 
-These weights are ported from the ones [released by VGG at Oxford](http://www.robots.ox.ac.uk/~vgg/research/very_deep/) under the [Creative Commons Attribution License](https://creativecommons.org/licenses/by/4.0/).
+이 가중치는 [옥스포드의 VGG에서](http://www.robots.ox.ac.uk/~vgg/research/very_deep/) [Creative Commons 저작자 표시 라이선스](https://creativecommons.org/licenses/by/4.0/)로 공개한 것을 이식한 것이다.
 
 -----
 
@@ -310,51 +304,47 @@ keras.applications.vgg19.VGG19(include_top=True, weights='imagenet', input_tenso
 ```
 
 
-VGG19 model, with weights pre-trained on ImageNet.
+VGG19 모델. ImageNet으로 가중치 사전 훈련.
 
-This model can be built both with `'channels_first'` data format (channels, height, width) or `'channels_last'` data format (height, width, channels).
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
 
-The default input size for this model is 224x224.
+이 모델의 기본 입력 크기는 224x224이다.
 
-### Arguments
+### 인자
 
-- include_top: whether to include the 3 fully-connected layers at the top of the network.
-- weights: one of `None` (random initialization) or `'imagenet'` (pre-training on ImageNet).
-- input_tensor: optional Keras tensor (i.e. output of `layers.Input()`) to use as image input for the model.
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(224, 224, 3)` (with `'channels_last'` data format)
-    or `(3, 224, 224)` (with `'channels_first'` data format).
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 32.
-    E.g. `(200, 200, 3)` would be one valid value.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model will be
-        the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a 2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images 
-    into, only to be specified if `include_top` is `True`, and 
-    if no `weights` argument is specified.
+- include_top: 망 가장 위에 완전 연결 층 3개를 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet으로 사전 훈련).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸 케라스 텐서(즉 `layers.Input()`의 출력).
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 32보다 작지 않아야 함.
+    가령 `(200, 200, 3)`이 유효한 값.
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-
-### References
+### 참고 자료
 
 - [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://arxiv.org/abs/1409.1556)
 
-### License
+### 라이선스
 
-These weights are ported from the ones [released by VGG at Oxford](http://www.robots.ox.ac.uk/~vgg/research/very_deep/) under the [Creative Commons Attribution License](https://creativecommons.org/licenses/by/4.0/).
+이 가중치는 [옥스포드의 VGG에서](http://www.robots.ox.ac.uk/~vgg/research/very_deep/) [Creative Commons 저작자 표시 라이선스](https://creativecommons.org/licenses/by/4.0/)로 공개한 것을 이식한 것이다.
 
 -----
 
@@ -366,51 +356,48 @@ keras.applications.resnet50.ResNet50(include_top=True, weights='imagenet', input
 ```
 
 
-ResNet50 model, with weights pre-trained on ImageNet.
+ResNet50 모델. ImageNet으로 가중치 사전 훈련.
 
-This model and can be built both with `'channels_first'` data format (channels, height, width) or `'channels_last'` data format (height, width, channels).
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
 
-The default input size for this model is 224x224.
+이 모델의 기본 입력 크기는 224x224이다.
 
 
-### Arguments
+### 인자
 
-- include_top: whether to include the fully-connected layer at the top of the network.
-- weights: one of `None` (random initialization) or `'imagenet'` (pre-training on ImageNet).
-- input_tensor: optional Keras tensor (i.e. output of `layers.Input()`) to use as image input for the model.
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(224, 224, 3)` (with `'channels_last'` data format)
-    or `(3, 224, 224)` (with `'channels_first'` data format).
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 32.
-    E.g. `(200, 200, 3)` would be one valid value.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model will be
-        the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a 2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images 
-    into, only to be specified if `include_top` is `True`, and 
-    if no `weights` argument is specified.
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet으로 사전 훈련).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸 케라스 텐서(즉 `layers.Input()`의 출력).
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 32보다 작지 않아야 함.
+    가령 `(200, 200, 3)`이 유효한 값.
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-### References
+### 참고 자료
 
 - [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
 
-### License
+### 라이선스
 
-These weights are ported from the ones [released by Kaiming He](https://github.com/KaimingHe/deep-residual-networks) under the [MIT license](https://github.com/KaimingHe/deep-residual-networks/blob/master/LICENSE).
+이 가중치는 [Kaiming He가](https://github.com/KaimingHe/deep-residual-networks) [MIT 라이선스](https://github.com/KaimingHe/deep-residual-networks/blob/master/LICENSE)로 공개한 것을 이식한 것이다.
 
 -----
 
@@ -421,51 +408,48 @@ These weights are ported from the ones [released by Kaiming He](https://github.c
 keras.applications.inception_v3.InceptionV3(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
 ```
 
-Inception V3 model, with weights pre-trained on ImageNet.
+Inception V3 모델. ImageNet으로 가중치 사전 훈련.
 
-This model and can be built both with `'channels_first'` data format (channels, height, width) or `'channels_last'` data format (height, width, channels).
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
 
-The default input size for this model is 299x299.
+이 모델의 기본 입력 크기는 299x299이다.
 
 
-### Arguments
+### 인자
 
-- include_top: whether to include the fully-connected layer at the top of the network.
-- weights: one of `None` (random initialization) or `'imagenet'` (pre-training on ImageNet).
-- input_tensor: optional Keras tensor (i.e. output of `layers.Input()`) to use as image input for the model.
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(299, 299, 3)` (with `'channels_last'` data format)
-    or `(3, 299, 299)` (with `'channels_first'` data format).
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 75.
-    E.g. `(150, 150, 3)` would be one valid value.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model will be
-        the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a 2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images 
-    into, only to be specified if `include_top` is `True`, and 
-    if no `weights` argument is specified.
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet으로 사전 훈련).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸 케라스 텐서(즉 `layers.Input()`의 출력).
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(299, 299, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 299, 299)`(`'channels_first'` 데이터 형식)여야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 75보다 작지 않아야 함.
+    가령 `(150, 150, 3)`이 유효한 값.
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-### References
+### 참고 자료
 
 - [Rethinking the Inception Architecture for Computer Vision](http://arxiv.org/abs/1512.00567)
 
-### License
+### 라이선스
 
-These weights are released under [the Apache License](https://github.com/tensorflow/models/blob/master/LICENSE).
+이 가중치는 [아파치 라이선스](https://github.com/tensorflow/models/blob/master/LICENSE)에 따라 공개되어 있다.
 
 -----
 
@@ -476,51 +460,48 @@ These weights are released under [the Apache License](https://github.com/tensorf
 keras.applications.inception_resnet_v2.InceptionResNetV2(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
 ```
 
-Inception-ResNet V2 model, with weights pre-trained on ImageNet.
+Inception-ResNet V2 모델. ImageNet으로 가중치 사전 훈련.
 
-This model and can be built both with `'channels_first'` data format (channels, height, width) or `'channels_last'` data format (height, width, channels).
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
 
-The default input size for this model is 299x299.
+이 모델의 기본 입력 크기는 299x299이다.
 
 
-### Arguments
+### 인자
 
-- include_top: whether to include the fully-connected layer at the top of the network.
-- weights: one of `None` (random initialization) or `'imagenet'` (pre-training on ImageNet).
-- input_tensor: optional Keras tensor (i.e. output of `layers.Input()`) to use as image input for the model.
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(299, 299, 3)` (with `'channels_last'` data format)
-    or `(3, 299, 299)` (with `'channels_first'` data format).
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 75.
-    E.g. `(150, 150, 3)` would be one valid value.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model will be
-        the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a 2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images 
-    into, only to be specified if `include_top` is `True`, and 
-    if no `weights` argument is specified.
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet으로 사전 훈련).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸 케라스 텐서(즉 `layers.Input()`의 출력).
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(299, 299, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 299, 299)`(`'channels_first'` 데이터 형식)여야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 75보다 작지 않아야 함.
+    가령 `(150, 150, 3)`이 유효한 값.
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-### References
+### 참고 자료
 
 - [Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning](https://arxiv.org/abs/1602.07261)
 
-### License
+### 라이선스
 
-These weights are released under [the Apache License](https://github.com/tensorflow/models/blob/master/LICENSE).
+이 가중치는 [아파치 라이선스](https://github.com/tensorflow/models/blob/master/LICENSE)에 따라 공개되어 있다.
 
 -----
 
@@ -531,65 +512,57 @@ These weights are released under [the Apache License](https://github.com/tensorf
 keras.applications.mobilenet.MobileNet(input_shape=None, alpha=1.0, depth_multiplier=1, dropout=1e-3, include_top=True, weights='imagenet', input_tensor=None, pooling=None, classes=1000)
 ```
 
-MobileNet model, with weights pre-trained on ImageNet.
+MobileNet 모델. ImageNet으로 가중치 사전 훈련.
 
-Note that this model only supports the data format `'channels_last'` (height, width, channels).
+이 모델은 데이터 형식 `'channels_last'`(높이, 폭, 채널)만 지원한다.
 
-The default input size for this model is 224x224.
+이 모델의 기본 입력 크기는 224x224이다.
 
-### Arguments
+### 인자
 
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(224, 224, 3)` (with `'channels_last'` data format)
-    or `(3, 224, 224)` (with `'channels_first'` data format).
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 32.
-    E.g. `(200, 200, 3)` would be one valid value.
-- alpha: controls the width of the network.
-    - If `alpha` < 1.0, proportionally decreases the number
-        of filters in each layer.
-    - If `alpha` > 1.0, proportionally increases the number
-        of filters in each layer.
-    - If `alpha` = 1, default number of filters from the paper
-        are used at each layer.
-- depth_multiplier: depth multiplier for depthwise convolution
-    (also called the resolution multiplier)
-- dropout: dropout rate
-- include_top: whether to include the fully-connected
-    layer at the top of the network.
-- weights: `None` (random initialization) or
-    `'imagenet'` (ImageNet weights)
-- input_tensor: optional Keras tensor (i.e. output of
-    `layers.Input()`)
-    to use as image input for the model.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model
-    will be the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a
-        2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images
-    into, only to be specified if `include_top` is `True`, and
-    if no `weights` argument is specified.
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 32보다 작지 않아야 함.
+    가령 `(200, 200, 3)`이 유효한 값.
+- alpha: 망의 폭을 제어함.
+    - `alpha` < 1.0이면 각 층에서 필터 수를
+        비례해서 줄임.
+    - `alpha` > 1.0이면 각 층에서 필터 수를
+        비례해서 늘임.
+    - `alpha` = 1이면 각 층에 논문에 있는
+        기본 필터 수를 사용함.
+- depth_multiplier: 깊이 방향 합성곱의 깊이 승수.
+    (해상도 승수라고도 함.)
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet 가중치).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸
+    케라스 텐서(즉 `layers.Input()`의 출력).
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-### References
+### 참고 자료
 
 - [MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/pdf/1704.04861.pdf)
 
-### License
+### 라이선스
 
-These weights are released under [the Apache License](https://github.com/tensorflow/models/blob/master/LICENSE).
+이 가중치는 [아파치 라이선스](https://github.com/tensorflow/models/blob/master/LICENSE)에 따라 공개되어 있다.
 
 -----
 
@@ -602,55 +575,51 @@ keras.applications.densenet.DenseNet169(include_top=True, weights='imagenet', in
 keras.applications.densenet.DenseNet201(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
 ```
 
-DenseNet models, with weights pre-trained on ImageNet.
+DenseNet 모델. ImageNet으로 가중치 사전 훈련.
 
-This model and can be built both with `'channels_first'` data format (channels, height, width) or `'channels_last'` data format (height, width, channels).
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
 
-The default input size for this model is 224x224.
+이 모델의 기본 입력 크기는 224x224이다.
 
-### Arguments
+### 인자
 
-- blocks: numbers of building blocks for the four dense layers.
-- include_top: whether to include the fully-connected
-    layer at the top of the network.
-- weights: one of `None` (random initialization),
-    'imagenet' (pre-training on ImageNet),
-    or the path to the weights file to be loaded.
-- input_tensor: optional Keras tensor (i.e. output of `layers.Input()`)
-    to use as image input for the model.
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is False (otherwise the input shape
-    has to be `(224, 224, 3)` (with `'channels_last'` data format)
-    or `(3, 224, 224)` (with `'channels_first'` data format).
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 32.
-    E.g. `(200, 200, 3)` would be one valid value.
-- pooling: optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model will be
-        the 4D tensor output of the
-        last convolutional layer.
-    - `avg` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a 2D tensor.
-    - `max` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images
-    into, only to be specified if `include_top` is True, and
-    if no `weights` argument is specified.
+- blocks: 4개 밀집 층에서의 구성 블록 수.
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는
+    'imagenet'(ImageNet으로 사전 훈련) 또는
+    적재할 가중치 파일의 경로.
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸
+    케라스 텐서(즉 `layers.Input()`의 출력).
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 32보다 작지 않아야 함.
+    가령 `(200, 200, 3)`이 유효한 값.
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras model instance.
+케라스 모델 인스턴스.
 
-### References
+### 참고 자료
 
 - [Densely Connected Convolutional Networks](https://arxiv.org/abs/1608.06993) (CVPR 2017 Best Paper Award)
 
-### License
+### 라이선스
 
-These weights are released under [the BSD 3-clause License](https://github.com/liuzhuang13/DenseNet/blob/master/LICENSE).
+이 가중치는 [BSD 3조항 라이선스](https://github.com/liuzhuang13/DenseNet/blob/master/LICENSE)에 따라 공개되어 있다.
 
 -----
 
@@ -662,57 +631,50 @@ keras.applications.nasnet.NASNetLarge(input_shape=None, include_top=True, weight
 keras.applications.nasnet.NASNetMobile(input_shape=None, include_top=True, weights='imagenet', input_tensor=None, pooling=None, classes=1000)
 ```
 
-Neural Architecture Search Network (NASNet) models, with weights pre-trained on ImageNet.
+Neural Architecture Search Network (NASNet) 모델. ImageNet으로 가중치 사전 훈련.
 
-The default input size for the NASNetLarge model is 331x331 and for the
-NASNetMobile model is 224x224.
+NASNetLarge 모델의 기본 입력 크기는 331x331이고
+NASNetMobile 모델은 224x224이다.
 
-### Arguments
+### 인자
 
-- input_shape: optional shape tuple, only to be specified
-    if `include_top` is `False` (otherwise the input shape
-    has to be `(224, 224, 3)` (with `'channels_last'` data format)
-    or `(3, 224, 224)` (with `'channels_first'` data format)
-    for NASNetMobile or `(331, 331, 3)` (with `'channels_last'`
-    data format) or `(3, 331, 331)` (with `'channels_first'`
-    data format) for NASNetLarge.
-    It should have exactly 3 inputs channels,
-    and width and height should be no smaller than 32.
-    E.g. `(200, 200, 3)` would be one valid value.
-- include_top: whether to include the fully-connected
-    layer at the top of the network.
-- weights: `None` (random initialization) or
-    `'imagenet'` (ImageNet weights)
-- input_tensor: optional Keras tensor (i.e. output of
-    `layers.Input()`)
-    to use as image input for the model.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model
-    will be the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a
-        2D tensor.
-    - `'max'` means that global max pooling will
-        be applied.
-- classes: optional number of classes to classify images
-    into, only to be specified if `include_top` is `True`, and
-    if no `weights` argument is specified.
+- input_shape: 선택적. 형태 튜플이며 `include_top`이
+    `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
+    NASNetMobile에서는 `(224, 224, 3)`(`'channels_last'`
+    데이터 형식)이나 `(3, 224, 224)`(`'channels_first'`
+    데이터 형식)여야 하고 NASNetLarge에서는
+    `(331, 331, 3)`(`'channels_last'` 데이터 형식)이나
+    `(3, 331, 331)`(`'channels_first'` 데이터 형식)이어야 함.
+    입력 채널이 정확히 3개여야 하고
+    폭과 높이가 32보다 작지 않아야 함.
+    가령 `(200, 200, 3)`이 유효한 값.
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet 가중치).
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸
+    케라스 텐서(즉 `layers.Input()`의 출력).
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras `Model` instance.
+케라스 `Model` 인스턴스.
 
-### References
+### 참고 자료
 
 - [Learning Transferable Architectures for Scalable Image Recognition](https://arxiv.org/abs/1707.07012)
 
-### License
+### 라이선스
 
-These weights are released under [the Apache License](https://github.com/tensorflow/models/blob/master/LICENSE).
+이 가중치는 [아파치 라이선스](https://github.com/tensorflow/models/blob/master/LICENSE)에 따라 공개되어 있다.
 
 -----
 
@@ -723,72 +685,65 @@ These weights are released under [the Apache License](https://github.com/tensorf
 keras.applications.mobilenetv2.MobileNetV2(input_shape=None, alpha=1.0, depth_multiplier=1, include_top=True, weights='imagenet', input_tensor=None, pooling=None, classes=1000)
 ```
 
-MobileNetV2 model, with weights pre-trained on ImageNet.
+MobileNetV2 모델. ImageNet으로 가중치 사전 훈련.
 
-Note that this model only supports the data format `'channels_last'` (height, width, channels).
+이 모델은 데이터 형식 `'channels_last'`(높이, 폭, 채널)만 지원한다.
 
-The default input size for this model is 224x224.
+이 모델의 기본 입력 크기는 224x224이다.
 
-### Arguments
+### 인자
 
-- input_shape: optional shape tuple, to be specified if you would
-    like to use a model with an input img resolution that is not
-    (224, 224, 3).
-    It should have exactly 3 inputs channels (224, 224, 3).
-    You can also omit this option if you would like
-    to infer input_shape from an input_tensor.
-    If you choose to include both input_tensor and input_shape then
-    input_shape will be used if they match, if the shapes
-    do not match then we will throw an error.
-    E.g. `(160, 160, 3)` would be one valid value.
-- alpha: controls the width of the network. This is known as the
-    width multiplier in the MobileNetV2 paper.
-    - If `alpha` < 1.0, proportionally decreases the number
-        of filters in each layer.
-    - If `alpha` > 1.0, proportionally increases the number
-        of filters in each layer.
-    - If `alpha` = 1, default number of filters from the paper
-         are used at each layer.
-- depth_multiplier: depth multiplier for depthwise convolution
-      (also called the resolution multiplier)
-- include_top: whether to include the fully-connected
-      layer at the top of the network.
-- weights: one of `None` (random initialization),
-        'imagenet' (pre-training on ImageNet),
-        or the path to the weights file to be loaded.
-- input_tensor: optional Keras tensor (i.e. output of
-      `layers.Input()`)
-      to use as image input for the model.
-- pooling: Optional pooling mode for feature extraction
-    when `include_top` is `False`.
-    - `None` means that the output of the model
-    will be the 4D tensor output of the
-        last convolutional layer.
-    - `'avg'` means that global average pooling
-        will be applied to the output of the
-        last convolutional layer, and thus
-        the output of the model will be a
-        2D tensor.
-    - `'max'` means that global max pooling will
-        be applied. 
-- classes: optional number of classes to classify images
-      into, only to be specified if `include_top` is True, and
-      if no `weights` argument is specified.
+- input_shape: 선택적. 형태 튜플이며 해상도가 (224, 224, 3)이
+    아닌 입력 이미지에 모델을 쓰고 싶은 경우에 지정.
+    입력 채널이 정확히 3개여야 함 (224, 224, 3).
+    input_tensor에서 input_shape을 추론하게 하고
+    싶은 경우에도 이 옵션을 생략할 수 있다.
+    input_tensor와 input_shape를 모두 주기로 한 경우에는
+    둘이 일치하면 input_shape을 사용하고
+    형태가 일치하지 않으면 오류를 던진다.
+    가령 `(160, 160, 3)`이 유효한 값.
+- alpha: 망의 폭을 제어함. MobileNetV2 논문에서는
+    폭 승수라고 함.
+    - `alpha` < 1.0이면 각 층에서 필터 수를
+        비례해서 줄임.
+    - `alpha` > 1.0이면 각 층에서 필터 수를
+        비례해서 늘임.
+    - `alpha` = 1이면 각 층에 논문에 있는
+        기본 필터 수를 사용함.
+- depth_multiplier: 깊이 방향 합성곱의 깊이 승수.
+      (해상도 승수라고도 함.)
+- include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
+- weights: `None`(난수 초기화) 또는
+        'imagenet'(ImageNet으로 사전 훈련) 또는
+        적재할 가중치 파일의 경로.
+- input_tensor: 선택적. 모델의 이미지 입력으로 쓸
+      케라스 텐서(즉 `layers.Input()`의 출력).
+- pooling: 선택적. `include_top`이 `False`일 때
+    피쳐 추출을 위한 풀링 방식.
+    - `None`은 마지막 합성곱 층의 4차원 텐서
+        출력이 모델의 출력이 된다는 뜻이다.
+    - `'avg'`는 마지막 합성곱 층의 출력에
+        전역 평균 풀링을 적용한다는 뜻이며,
+        그래서 모델의 출력이 2차원 텐서가 된다.
+    - `'max'`는 전역 맥스 풀링을 적용한다는 뜻이다.
+- classes: 선택적. 이미지를 분류할 유형의 수이며
+    `include_top`이 `True`이고 `weights` 인자를
+    지정하지 않은 경우에만 지정하면 됨.
 
-### Returns
+### 반환
 
-A Keras model instance.
+케라스 모델 인스턴스.
 
-### Raises
+### 예외
 
-ValueError: in case of invalid argument for `weights`,
-    or invalid input shape or invalid depth_multiplier, alpha,
-    rows when weights='imagenet'
+ValueError: `weights` 인자가 유효하지 않거나,
+    weights='imagenet'일 때 입력 형태가 유효하지 않거나
+    depth_multiplier, alpha, rows가 유효하지 않은 경우.
 
-### References
+### 참고 자료
 
 - [MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381)
 
-### License
+### 라이선스
 
-These weights are released under [the Apache License](https://github.com/tensorflow/models/blob/master/LICENSE).
+이 가중치는 [아파치 라이선스](https://github.com/tensorflow/models/blob/master/LICENSE)에 따라 공개되어 있다.

@@ -44,7 +44,7 @@ pages:
 - 활성: activations.md
 - 콜백: callbacks.md
 - 데이터셋: datasets.md
-- Applications: applications.md
+- 응용 망: applications.md
 - Backend: backend.md
 - Initializers: initializers.md
 - Regularizers: regularizers.md
