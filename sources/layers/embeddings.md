@@ -35,8 +35,8 @@ __인자__
 - __embeddings_initializer__: `embeddings` 행렬 초기화 방식.
     ([초기화](../initializers.md) 참고.)
 - __embeddings_regularizer__: `embeddings` 행렬에 적용하는
-    정규화 함수.
-    ([정규화](../regularizers.md) 참고.)
+    정칙화 함수.
+    ([정칙화](../regularizers.md) 참고.)
 - __embeddings_constraint__: `embeddings` 행렬에 적용하는
     제약 함수.
     ([제약](../constraints.md) 참고.)
