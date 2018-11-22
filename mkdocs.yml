@@ -47,7 +47,7 @@ pages:
 - 응용 망: applications.md
 - Backend: backend.md
 - Initializers: initializers.md
-- Regularizers: regularizers.md
+- 정칙화: regularizers.md
 - Constraints: constraints.md
 - 시각화: visualization.md
 - Scikit-learn API: scikit-learn-api.md
