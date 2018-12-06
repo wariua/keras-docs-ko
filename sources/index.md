@@ -103,7 +103,7 @@ classes = model.predict(x_test, batch_size=128)
 - [Sequential 모델 써 보기](https://keras.io/getting-started/sequential-model-guide)
 - [함수형 API 써 보기](https://keras.io/getting-started/functional-api-guide)
 
-저장소의 [예시 폴더](https://github.com/keras-team/keras/tree/master/examples)에서 더 복잡한 모델들을 찾을 수 있다. 메모리 망을 쓰는 질의 응답, LSTM을 중첩한 텍스트 생성 등이 있다.
+저장소의 [예시 폴더](https://github.com/keras-team/keras/tree/master/examples)에서 더 복잡한 모델들을 찾을 수 있다. 메모리 망을 이용한 질의 응답, 다층 LSTM을 이용한 텍스트 생성 등이 있다.
 
 
 ------------------

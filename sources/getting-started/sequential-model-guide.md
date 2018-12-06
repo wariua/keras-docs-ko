@@ -308,7 +308,7 @@ model.fit(x_train, y_train, batch_size=16, epochs=10)
 score = model.evaluate(x_test, y_test, batch_size=16)
 ```
 
-### 순차 분류를 위한 중첩 LSTM
+### 순차 분류를 위한 다층 LSTM
 
 이 모델에서는 LSTM 층 3개를 쌓아서
 고수준 temporal 표현을 학습할 수 있는 모델을 만든다.
@@ -354,7 +354,7 @@ model.fit(x_train, y_train,
 ```
 
 
-### 동일한 중첩 LSTM 모델, "상태 유지형"으로
+### 동일한 다층 LSTM 모델, "상태 유지형"으로
 
 상태 유지형 순환 모델에서는 표본 배치를 하나 처리하고서 얻은 내부 상태(메모리)를
 다음 표본 배치를 위한 초기 상태로 재사용한다. 이렇게 하면 연산 복잡도를
