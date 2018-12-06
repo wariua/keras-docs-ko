@@ -41,17 +41,17 @@ __인자__
     (즉 "선형" 활성: `a(x) = x`).
 - __use_bias__: 불리언. 층에서 편향 벡터를 쓸지 여부.
 - __kernel_initializer__: 가중치 행렬 `kernel`의 initializer
-    ([initializers](../initializers.md) 참고).
+    ([초기화](../initializers.md) 참고).
 - __bias_initializer__: 편향 벡터의 initializer
-    ([initializers](../initializers.md) 참고).
+    ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: 가중치 행렬 `kernel`에
-    적용하는 regularizer 함수.
-    ([regularizer](../regularizers.md) 참고).
-- __bias_regularizer__: 편향 벡터에 적용하는 regularizer 함수
-    ([regularizer](../regularizers.md) 참고).
+    적용하는 정칙화 함수.
+    ([정칙화](../regularizers.md) 참고).
+- __bias_regularizer__: 편향 벡터에 적용하는 정칙화 함수
+    ([정칙화](../regularizers.md) 참고).
 - __activity_regularizer__: 층의 출력에 ("활성"에)
-    적용하는 regularizer 함수
-    ([regularizer](../regularizers.md) 참고).
+    적용하는 정칙화 함수
+    ([정칙화](../regularizers.md) 참고).
 - __kernel_constraint__: 가중치 행렬 `kernel`에
     적용하는 제약 함수
     ([제약](../constraints.md) 참고).
