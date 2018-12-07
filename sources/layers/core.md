@@ -109,12 +109,12 @@ keras.layers.Dropout(rate, noise_shape=None, seed=None)
 입력에 드롭아웃을 적용한다.
 
 드롭아웃은 훈련 동안 각 갱신마다
-입력 단위들 중 `rate` 부분만큼을 무작위로 0으로 설정하는 것이며
+입력 유닛들 중 `rate` 부분만큼을 무작위로 0으로 설정하는 것이며
 과적합을 막는 데 도움이 된다.
 
 __인자__
 
-- __rate__: 0과 1 사이의 float. 버릴 입력 단위들의 비율.
+- __rate__: 0과 1 사이의 float. 버릴 입력 유닛들의 비율.
 - __noise_shape__: 입력에 곱하게 되는 이진 드롭아웃 마스크의
     형태를 나타내는 1차원 정수 텐서.
     예를 들어 입력의 형태가 `(batch_size, timesteps, features)`이고
@@ -499,7 +499,7 @@ SpatialDropout1D를 대신 사용하는 게 좋다.
 
 __인자__
 
-- __rate__: 0과 1 사이의 float. 버릴 입력 단위들의 비율.
+- __rate__: 0과 1 사이의 float. 버릴 입력 유닛들의 비율.
 
 __입력 형태__
 
@@ -534,7 +534,7 @@ SpatialDropout2D를 대신 사용하는 게 좋다.
 
 __인자__
 
-- __rate__: 0과 1 사이의 float. 버릴 입력 단위들의 비율.
+- __rate__: 0과 1 사이의 float. 버릴 입력 유닛들의 비율.
 - __data_format__: "channels_first" 또는 "channels_last".
     "channels_first" 모드에서는 채널 차원(깊이)이 인덱스 1에 있고
     "channels_last" 모드에서는 인덱스 3에 있다.
@@ -578,7 +578,7 @@ SpatialDropout3D를 대신 사용하는 게 좋다.
 
 __인자__
 
-- __rate__: 0과 1 사이의 float. 버릴 입력 단위들의 비율.
+- __rate__: 0과 1 사이의 float. 버릴 입력 유닛들의 비율.
 - __data_format__: "channels_first" 또는 "channels_last".
     "channels_first" 모드에서는 채널 차원(깊이)이 인덱스 1에 있고
     "channels_last" 모드에서는 인덱스 4에 있다.
