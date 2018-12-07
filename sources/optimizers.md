@@ -166,7 +166,7 @@ keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.
 
 Adam 옵티마이저.
 
-기본 매개변수 값들은 원논문에 제시된 값을 따른다.
+기본 매개변수 값들은 원저 논문에 제시된 값을 따른다.
 
 __인자__
 
