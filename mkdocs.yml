@@ -26,7 +26,7 @@ pages:
   - Convolutional Layers: layers/convolutional.md
   - Pooling Layers: layers/pooling.md
   - Locally-connected Layers: layers/local.md
-  - Recurrent Layers: layers/recurrent.md
+  - 순환 층: layers/recurrent.md
   - Embedding 층: layers/embeddings.md
   - 병합 층: layers/merge.md
   - Advanced Activations Layers: layers/advanced-activations.md
