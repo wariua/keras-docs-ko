@@ -45,7 +45,7 @@ __인자__
 - __bias_initializer__: 편향 벡터의 initializer
     ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __bias_regularizer__: 편향 벡터에 적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).

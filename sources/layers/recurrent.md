@@ -191,7 +191,7 @@ __인자__
 - __bias_initializer__: 편향 벡터의 initializer
     ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -276,7 +276,7 @@ __인자__
 - __bias_initializer__: 편향 벡터의 initializer
     ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -372,7 +372,7 @@ __인자__
     참으로 설정하면 `bias_initializer="zeros"`도 써야 한다.
     [Jozefowicz 외의 논문](http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf)에서 이를 권장한다.
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -488,7 +488,7 @@ __인자__
     `bias_initializer="zeros"`와 조합해서 사용하라.
     [Jozefowicz 외의 논문](http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf)에서 이를 권장한다.
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -587,7 +587,7 @@ __인자__
 - __bias_initializer__: 편향 벡터의 initializer
     ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -644,7 +644,7 @@ __인자__
 - __bias_initializer__: 편향 벡터의 initializer
     ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -714,7 +714,7 @@ __인자__
     참으로 설정하면 `bias_initializer="zeros"`도 써야 한다.
     [Jozefowicz 외의 논문](http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf)에서 이를 권장한다.
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -767,7 +767,7 @@ __인자__
 - __bias_initializer__: 편향 벡터의 initializer
     ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수
@@ -822,7 +822,7 @@ __인자__
 - __bias_initializer__: 편향 벡터의 initializer
     ([초기화](../initializers.md) 참고).
 - __kernel_regularizer__: `kernel` 가중치 행렬에
-    적용하는 정칙화 함수.
+    적용하는 정칙화 함수
     ([정칙화](../regularizers.md) 참고).
 - __recurrent_regularizer__: `recurrent_kernel`
     가중치 행렬에 적용하는 정칙화 함수

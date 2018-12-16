@@ -32,14 +32,14 @@ __인자__
 - __input_dim__: int > 0. 어휘 수.
     즉 가장 큰 정수 인덱스 + 1.
 - __output_dim__: int >= 0. 밀집 embedding의 차원.
-- __embeddings_initializer__: `embeddings` 행렬 초기화 방식.
-    ([초기화](../initializers.md) 참고.)
+- __embeddings_initializer__: `embeddings` 행렬 초기화 방식
+    ([초기화](../initializers.md) 참고).
 - __embeddings_regularizer__: `embeddings` 행렬에 적용하는
-    정칙화 함수.
-    ([정칙화](../regularizers.md) 참고.)
+    정칙화 함수
+    ([정칙화](../regularizers.md) 참고).
 - __embeddings_constraint__: `embeddings` 행렬에 적용하는
-    제약 함수.
-    ([제약](../constraints.md) 참고.)
+    제약 함수
+    ([제약](../constraints.md) 참고).
 - __mask_zero__: 입력 값 0이 감춰 버려야 하는
     "패딩" 특수 값인지 여부.
     가변 길이 입력을 받을 수도 있는
