@@ -30,7 +30,7 @@ pages:
   - Embedding 층: layers/embeddings.md
   - 병합 층: layers/merge.md
   - Advanced Activations Layers: layers/advanced-activations.md
-  - Normalization Layers: layers/normalization.md
+  - 정규화 층: layers/normalization.md
   - 잡음 층: layers/noise.md
   - Layer wrappers: layers/wrappers.md
   - Writing your own Keras layers: layers/writing-your-own-keras-layers.md
