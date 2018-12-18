@@ -203,7 +203,7 @@ Xception V1 모델. ImageNet으로 가중치 사전 훈련.
 ImageNet에서 이 모델은 top-1 검증 정확도가 0.790,
 top-5 검증 정확도가 0.945이다.
 
-이 모델은 데이터 형식 `'channels_last'`(높이, 폭, 채널)만 지원한다.
+이 모델은 데이터 형식 `'channels_last'`(높이, 너비, 채널)만 지원한다.
 
 이 모델의 기본 입력 크기는 299x299이다.
 
@@ -216,7 +216,7 @@ top-5 검증 정확도가 0.945이다.
     `False`인 경우에만 지정. 아닌 경우에는 입력 형태가
     `(299, 299, 3)`이어야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 71보다 작지 않아야 함.
+    너비와 높이가 71보다 작지 않아야 함.
     가령 `(150, 150, 3)`이 유효한 값.
 - pooling: 선택적. `include_top`이 `False`일 때
     피쳐 추출을 위한 풀링 방식.
@@ -254,7 +254,7 @@ keras.applications.vgg16.VGG16(include_top=True, weights='imagenet', input_tenso
 
 VGG16 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 너비)이나 `'channels_last'` 데이터 형식(높이, 너비, 채널) 어느 쪽으로도 구성할 수 있다.
 
 이 모델의 기본 입력 크기는 224x224이다.
 
@@ -268,7 +268,7 @@ VGG16 모델. ImageNet으로 가중치 사전 훈련.
     `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 32보다 작지 않아야 함.
+    너비와 높이가 32보다 작지 않아야 함.
     가령 `(200, 200, 3)`이 유효한 값.
 - pooling: 선택적. `include_top`이 `False`일 때
     피쳐 추출을 위한 풀링 방식.
@@ -306,7 +306,7 @@ keras.applications.vgg19.VGG19(include_top=True, weights='imagenet', input_tenso
 
 VGG19 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 너비)이나 `'channels_last'` 데이터 형식(높이, 너비, 채널) 어느 쪽으로도 구성할 수 있다.
 
 이 모델의 기본 입력 크기는 224x224이다.
 
@@ -320,7 +320,7 @@ VGG19 모델. ImageNet으로 가중치 사전 훈련.
     `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 32보다 작지 않아야 함.
+    너비와 높이가 32보다 작지 않아야 함.
     가령 `(200, 200, 3)`이 유효한 값.
 - pooling: 선택적. `include_top`이 `False`일 때
     피쳐 추출을 위한 풀링 방식.
@@ -358,7 +358,7 @@ keras.applications.resnet50.ResNet50(include_top=True, weights='imagenet', input
 
 ResNet50 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 너비)이나 `'channels_last'` 데이터 형식(높이, 너비, 채널) 어느 쪽으로도 구성할 수 있다.
 
 이 모델의 기본 입력 크기는 224x224이다.
 
@@ -373,7 +373,7 @@ ResNet50 모델. ImageNet으로 가중치 사전 훈련.
     `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 32보다 작지 않아야 함.
+    너비와 높이가 32보다 작지 않아야 함.
     가령 `(200, 200, 3)`이 유효한 값.
 - pooling: 선택적. `include_top`이 `False`일 때
     피쳐 추출을 위한 풀링 방식.
@@ -410,7 +410,7 @@ keras.applications.inception_v3.InceptionV3(include_top=True, weights='imagenet'
 
 Inception V3 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 너비)이나 `'channels_last'` 데이터 형식(높이, 너비, 채널) 어느 쪽으로도 구성할 수 있다.
 
 이 모델의 기본 입력 크기는 299x299이다.
 
@@ -425,7 +425,7 @@ Inception V3 모델. ImageNet으로 가중치 사전 훈련.
     `(299, 299, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 299, 299)`(`'channels_first'` 데이터 형식)여야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 75보다 작지 않아야 함.
+    너비와 높이가 75보다 작지 않아야 함.
     가령 `(150, 150, 3)`이 유효한 값.
 - pooling: 선택적. `include_top`이 `False`일 때
     피쳐 추출을 위한 풀링 방식.
@@ -462,7 +462,7 @@ keras.applications.inception_resnet_v2.InceptionResNetV2(include_top=True, weigh
 
 Inception-ResNet V2 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 너비)이나 `'channels_last'` 데이터 형식(높이, 너비, 채널) 어느 쪽으로도 구성할 수 있다.
 
 이 모델의 기본 입력 크기는 299x299이다.
 
@@ -477,7 +477,7 @@ Inception-ResNet V2 모델. ImageNet으로 가중치 사전 훈련.
     `(299, 299, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 299, 299)`(`'channels_first'` 데이터 형식)여야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 75보다 작지 않아야 함.
+    너비와 높이가 75보다 작지 않아야 함.
     가령 `(150, 150, 3)`이 유효한 값.
 - pooling: 선택적. `include_top`이 `False`일 때
     피쳐 추출을 위한 풀링 방식.
@@ -514,7 +514,7 @@ keras.applications.mobilenet.MobileNet(input_shape=None, alpha=1.0, depth_multip
 
 MobileNet 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 데이터 형식 `'channels_last'`(높이, 폭, 채널)만 지원한다.
+이 모델은 데이터 형식 `'channels_last'`(높이, 너비, 채널)만 지원한다.
 
 이 모델의 기본 입력 크기는 224x224이다.
 
@@ -525,9 +525,9 @@ MobileNet 모델. ImageNet으로 가중치 사전 훈련.
     `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 32보다 작지 않아야 함.
+    너비와 높이가 32보다 작지 않아야 함.
     가령 `(200, 200, 3)`이 유효한 값.
-- alpha: 망의 폭을 제어함.
+- alpha: 망의 너비를 제어함.
     - `alpha` < 1.0이면 각 층에서 필터 수를
         비례해서 줄임.
     - `alpha` > 1.0이면 각 층에서 필터 수를
@@ -577,7 +577,7 @@ keras.applications.densenet.DenseNet201(include_top=True, weights='imagenet', in
 
 DenseNet 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 폭)이나 `'channels_last'` 데이터 형식(높이, 폭, 채널) 어느 쪽으로도 구성할 수 있다.
+이 모델은 `'channels_first'` 데이터 형식(채널, 높이, 너비)이나 `'channels_last'` 데이터 형식(높이, 너비, 채널) 어느 쪽으로도 구성할 수 있다.
 
 이 모델의 기본 입력 크기는 224x224이다.
 
@@ -595,7 +595,7 @@ DenseNet 모델. ImageNet으로 가중치 사전 훈련.
     `(224, 224, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 224, 224)`(`'channels_first'` 데이터 형식)여야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 32보다 작지 않아야 함.
+    너비와 높이가 32보다 작지 않아야 함.
     가령 `(200, 200, 3)`이 유효한 값.
 - pooling: 선택적. `include_top`이 `False`일 때
     피쳐 추출을 위한 풀링 방식.
@@ -646,7 +646,7 @@ NASNetMobile 모델은 224x224이다.
     `(331, 331, 3)`(`'channels_last'` 데이터 형식)이나
     `(3, 331, 331)`(`'channels_first'` 데이터 형식)이어야 함.
     입력 채널이 정확히 3개여야 하고
-    폭과 높이가 32보다 작지 않아야 함.
+    너비와 높이가 32보다 작지 않아야 함.
     가령 `(200, 200, 3)`이 유효한 값.
 - include_top: 망 가장 위에 완전 연결 층을 포함시킬지 여부.
 - weights: `None`(난수 초기화) 또는 `'imagenet'`(ImageNet 가중치).
@@ -687,7 +687,7 @@ keras.applications.mobilenetv2.MobileNetV2(input_shape=None, alpha=1.0, depth_mu
 
 MobileNetV2 모델. ImageNet으로 가중치 사전 훈련.
 
-이 모델은 데이터 형식 `'channels_last'`(높이, 폭, 채널)만 지원한다.
+이 모델은 데이터 형식 `'channels_last'`(높이, 너비, 채널)만 지원한다.
 
 이 모델의 기본 입력 크기는 224x224이다.
 
@@ -702,8 +702,8 @@ MobileNetV2 모델. ImageNet으로 가중치 사전 훈련.
     둘이 일치하면 input_shape을 사용하고
     형태가 일치하지 않으면 오류를 던진다.
     가령 `(160, 160, 3)`이 유효한 값.
-- alpha: 망의 폭을 제어함. MobileNetV2 논문에서는
-    폭 승수라고 함.
+- alpha: 망의 너비를 제어함. MobileNetV2 논문에서는
+    너비 승수라고 함.
     - `alpha` < 1.0이면 각 층에서 필터 수를
         비례해서 줄임.
     - `alpha` > 1.0이면 각 층에서 필터 수를
