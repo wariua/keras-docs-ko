@@ -454,7 +454,7 @@ __인자__
 - __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
 - __data_format__: 문자열.
     "channels_last"(기본값) 또는 "channels_first".
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `channels_last`는 `(batch, time, ..., channels)`
     형태의 입력에 해당하고
     `channels_first`는 `(batch, time, channels, ...)`

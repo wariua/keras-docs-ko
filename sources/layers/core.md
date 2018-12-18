@@ -141,7 +141,7 @@ __인자__
 
 - __data_format__: 문자열.
     "channels_last"(기본값) 또는 "channels_first".
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     이 인자의 목적은 한 데이터 형식에서 다른 형식으로
     모델을 전환할 때 가중치 순서를 유지하는 것이다.
     "channels_last"는 `(batch, ..., channels)` 형태의

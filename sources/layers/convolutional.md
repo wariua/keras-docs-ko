@@ -40,7 +40,7 @@ __인자__
     [WaveNet: A Generative Model for Raw Audio, 2.1절](https://arxiv.org/abs/1609.03499) 참고.
 - __data_format__: 문자열.
     `"channels_last"`(기본값) 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, steps, channels)`
     형태(시간 데이터에 대한 케라스 기본 형식)의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, steps)`
@@ -124,7 +124,7 @@ __인자__
     `"same"`이 살짝 다르다.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, height, width, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, height, width)`
@@ -214,7 +214,7 @@ __인자__
 - __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, steps, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, steps)`
@@ -319,7 +319,7 @@ __인자__
 - __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, height, width, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, height, width)`
@@ -433,7 +433,7 @@ __인자__
     `None`(기본값)으로 설정하면 출력 형태를 추론한다.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, height, width, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, height, width)`
@@ -540,7 +540,7 @@ __인자__
 - __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
     형태의 입력에 해당하고
@@ -645,7 +645,7 @@ __인자__
     `None`(기본값)으로 설정하면 출력 형태를 추론한다.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, depth, height, width, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, depth, height, width)`
@@ -768,7 +768,7 @@ __인자__
         `((top_crop, bottom_crop), (left_crop, right_crop))`으로 해석.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, height, width, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, height, width)`
@@ -833,7 +833,7 @@ __인자__
         `((left_dim1_crop, right_dim1_crop), (left_dim2_crop, right_dim2_crop), (left_dim3_crop, right_dim3_crop))`으로 해석.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
     형태의 입력에 해당하고
@@ -907,7 +907,7 @@ __인자__
     행과 열에 대한 업샘플링 비율.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, height, width, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, height, width)`
@@ -954,7 +954,7 @@ __인자__
     dim1, dim2, dim3에 대한 업샘플링 비율.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
     형태의 입력에 해당하고
@@ -1042,7 +1042,7 @@ __인자__
         `((top_pad, bottom_pad), (left_pad, right_pad))`로 해석.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는 `(batch, height, width, channels)`
     형태의 입력에 해당하고
     `"channels_first"`는 `(batch, channels, height, width)`
@@ -1093,7 +1093,7 @@ __인자__
         `((left_dim1_pad, right_dim1_pad), (left_dim2_pad, right_dim2_pad), (left_dim3_pad, right_dim3_pad))`로 해석.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `"channels_last"`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
     형태의 입력에 해당하고

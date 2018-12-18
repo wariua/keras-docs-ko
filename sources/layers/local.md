@@ -115,7 +115,7 @@ __인자__
     향후 `"same"`을 지원할 수도 있음.
 - __data_format__: 문자열.
     `channels_last`(기본값) 또는 `channels_first`.
-    입력 내에서 차원들의 순서.
+    입력에서 차원들의 순서.
     `channels_last`는 `(batch, height, width, channels)`
     형태의 입력에 해당하고
     `channels_first`는 `(batch, channels, height, width)`
