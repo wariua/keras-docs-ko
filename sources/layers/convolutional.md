@@ -877,7 +877,7 @@ keras.layers.UpSampling1D(size=2)
 
 __인자__
 
-- __size__: 정수. 업샘플링 인수.
+- __size__: 정수. 업샘플링 비율.
 
 __입력 형태__
 
@@ -904,7 +904,7 @@ keras.layers.UpSampling2D(size=(2, 2), data_format=None)
 __인자__
 
 - __size__: int, 또는 정수 2개짜리 튜플.
-    행과 열에 대한 업샘플링 인수.
+    행과 열에 대한 업샘플링 비율.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
     입력 내에서 차원들의 순서.
@@ -951,7 +951,7 @@ size[0] 번, size[1] 번, size[2] 번 반복한다.
 __인자__
 
 - __size__: int, 또는 정수 3개짜리 튜플.
-    dim1, dim2, dim3에 대한 업샘플링 인수.
+    dim1, dim2, dim3에 대한 업샘플링 비율.
 - __data_format__: 문자열.
     `"channels_last"` 또는 `"channels_first"`.
     입력 내에서 차원들의 순서.
