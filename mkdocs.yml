@@ -25,7 +25,7 @@ pages:
   - 기본 층: layers/core.md
   - 합성곱 층: layers/convolutional.md
   - Pooling Layers: layers/pooling.md
-  - Locally-connected Layers: layers/local.md
+  - 국소 연결 층: layers/local.md
   - 순환 층: layers/recurrent.md
   - Embedding 층: layers/embeddings.md
   - 병합 층: layers/merge.md
