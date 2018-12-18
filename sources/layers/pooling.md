@@ -1,439 +1,439 @@
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L57)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L57)</span>
 ### MaxPooling1D
 
 ```python
 keras.layers.MaxPooling1D(pool_size=2, strides=None, padding='valid')
 ```
 
-Max pooling operation for temporal data.
+시간 데이터를 위한 최대 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __pool_size__: Integer, size of the max pooling windows.
-- __strides__: Integer, or None. Factor by which to downscale.
-    E.g. 2 will halve the input.
-    If None, it will default to `pool_size`.
-- __padding__: One of `"valid"` or `"same"` (case-insensitive).
+- __pool_size__: 정수. 최대 풀링 윈도의 크기.
+- __strides__: 정수, 또는 None. 다운스케일 비율.
+    가령 2로 하면 입력을 반으로 줄임.
+    None이면 `pool_size` 사용.
+- __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
 
-__Input shape__
+__입력 형태__
 
-3D tensor with shape: `(batch_size, steps, features)`.
+`(batch_size, steps, features)` 형태의 3차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-3D tensor with shape: `(batch_size, downsampled_steps, features)`.
+`(batch_size, downsampled_steps, features)` 형태의 3차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L169)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L169)</span>
 ### MaxPooling2D
 
 ```python
 keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding='valid', data_format=None)
 ```
 
-Max pooling operation for spatial data.
+공간 데이터를 위한 최대 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __pool_size__: integer or tuple of 2 integers,
-    factors by which to downscale (vertical, horizontal).
-    (2, 2) will halve the input in both spatial dimension.
-    If only one integer is specified, the same window length
-    will be used for both dimensions.
-- __strides__: Integer, tuple of 2 integers, or None.
-    Strides values.
-    If None, it will default to `pool_size`.
-- __padding__: One of `"valid"` or `"same"` (case-insensitive).
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
-    `(batch, height, width, channels)` while `channels_first`
-    corresponds to inputs with shape
-    `(batch, channels, height, width)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+- __pool_size__: 정수 또는 정수 2개로 된 튜플.
+    다운스케일 비율 (수직, 수평).
+    (2, 2)라고 하면 두 공간 차원 모두에서 입력을 반으로 줄임.
+    정수 하나만 지정하면 두 차원에 같은 윈도 길이를 쓰게 됨.
+- __strides__: 정수, 또는 정수 2개로 된 튜플, 또는 None.
+    보폭 값.
+    None이면 `pool_size` 사용.
+- __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는 `(batch, height, width, channels)`
+    형태의 입력에 해당하고
+    `channels_first`는 `(batch, channels, height, width)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    4D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, rows, cols, channels)`
-- If `data_format='channels_first'`:
-    4D tensor with shape:
+    형태의 4차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, rows, cols)`
+    형태의 4차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-- If `data_format='channels_last'`:
-    4D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, pooled_rows, pooled_cols, channels)`
-- If `data_format='channels_first'`:
-    4D tensor with shape:
+    형태의 4차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, pooled_rows, pooled_cols)`
+    형태의 4차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L338)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L338)</span>
 ### MaxPooling3D
 
 ```python
 keras.layers.MaxPooling3D(pool_size=(2, 2, 2), strides=None, padding='valid', data_format=None)
 ```
 
-Max pooling operation for 3D data (spatial or spatio-temporal).
+3차원 (공간 또는 공간-시간) 데이터를 위한 최대 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __pool_size__: tuple of 3 integers,
-    factors by which to downscale (dim1, dim2, dim3).
-    (2, 2, 2) will halve the size of the 3D input in each dimension.
-- __strides__: tuple of 3 integers, or None. Strides values.
-- __padding__: One of `"valid"` or `"same"` (case-insensitive).
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
+- __pool_size__: 정수 3개로 된 튜플.
+    다운스케일 비율 (dim1, dim2, dim3로).
+    (2, 2, 2)라고 하면 3차원 입력의 각 차원에서 크기를 반으로 줄임.
+- __strides__: 정수 3개로 된 튜플, 또는 None. 보폭 값.
+- __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-    while `channels_first` corresponds to inputs with shape
-    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+    형태의 입력에 해당하고
+    `channels_first`는
+    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    5D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-- If `data_format='channels_first'`:
-    5D tensor with shape:
+    형태의 5차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 5차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-- If `data_format='channels_last'`:
-    5D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)`
-- If `data_format='channels_first'`:
-    5D tensor with shape:
+    형태의 5차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)`
+    형태의 5차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L87)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L87)</span>
 ### AveragePooling1D
 
 ```python
 keras.layers.AveragePooling1D(pool_size=2, strides=None, padding='valid')
 ```
 
-Average pooling for temporal data.
+시간 데이터를 위한 평균 최대 연산.
 
-__Arguments__
+__인자__
 
-- __pool_size__: Integer, size of the average pooling windows.
-- __strides__: Integer, or None. Factor by which to downscale.
-    E.g. 2 will halve the input.
-    If None, it will default to `pool_size`.
-- __padding__: One of `"valid"` or `"same"` (case-insensitive).
+- __pool_size__: 정수. 평균 풀링 윈도의 크기.
+- __strides__: 정수, 또는 None. 다운스케일 비율.
+    가령 2로 하면 입력을 반으로 줄임.
+    None이면 `pool_size` 사용.
+- __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
 
-__Input shape__
+__입력 형태__
 
-3D tensor with shape: `(batch_size, steps, features)`.
+`(batch_size, steps, features)` 형태의 3차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-3D tensor with shape: `(batch_size, downsampled_steps, features)`.
+`(batch_size, downsampled_steps, features)` 형태의 3차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L224)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L224)</span>
 ### AveragePooling2D
 
 ```python
 keras.layers.AveragePooling2D(pool_size=(2, 2), strides=None, padding='valid', data_format=None)
 ```
 
-Average pooling operation for spatial data.
+공간 데이터를 위한 평균 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __pool_size__: integer or tuple of 2 integers,
-    factors by which to downscale (vertical, horizontal).
-    (2, 2) will halve the input in both spatial dimension.
-    If only one integer is specified, the same window length
-    will be used for both dimensions.
-- __strides__: Integer, tuple of 2 integers, or None.
-    Strides values.
-    If None, it will default to `pool_size`.
-- __padding__: One of `"valid"` or `"same"` (case-insensitive).
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
-    `(batch, height, width, channels)` while `channels_first`
-    corresponds to inputs with shape
-    `(batch, channels, height, width)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+- __pool_size__: 정수 또는 정수 2개로 된 튜플.
+    다운스케일 비율 (수직, 수평).
+    (2, 2)라고 하면 두 공간 차원 모두에서 입력을 반으로 줄임.
+    정수 하나만 지정하면 두 차원에 같은 윈도 길이를 쓰게 됨.
+- __strides__: 정수, 또는 정수 2개로 된 튜플, 또는 None.
+    보폭 값.
+    None이면 `pool_size` 사용.
+- __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는 `(batch, height, width, channels)`
+    형태의 입력에 해당하고
+    `channels_first`는 `(batch, channels, height, width)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    4D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, rows, cols, channels)`
-- If `data_format='channels_first'`:
-    4D tensor with shape:
+    형태의 4차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, rows, cols)`
+    형태의 4차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-- If `data_format='channels_last'`:
-    4D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, pooled_rows, pooled_cols, channels)`
-- If `data_format='channels_first'`:
-    4D tensor with shape:
+    형태의 4차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, pooled_rows, pooled_cols)`
+    형태의 4차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L388)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L388)</span>
 ### AveragePooling3D
 
 ```python
 keras.layers.AveragePooling3D(pool_size=(2, 2, 2), strides=None, padding='valid', data_format=None)
 ```
 
-Average pooling operation for 3D data (spatial or spatio-temporal).
+3차원 (공간 또는 공간-시간) 데이터를 위한 평균 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __pool_size__: tuple of 3 integers,
-    factors by which to downscale (dim1, dim2, dim3).
-    (2, 2, 2) will halve the size of the 3D input in each dimension.
-- __strides__: tuple of 3 integers, or None. Strides values.
-- __padding__: One of `"valid"` or `"same"` (case-insensitive).
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
+- __pool_size__: 정수 3개로 된 튜플.
+    다운스케일 비율 (dim1, dim2, dim3로).
+    (2, 2, 2)라고 하면 3차원 입력의 각 차원에서 크기를 반으로 줄임.
+- __strides__: 정수 3개로 된 튜플, 또는 None. 보폭 값.
+- __padding__: `"valid"` 또는 `"same"` (대소문자 구분 없음).
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-    while `channels_first` corresponds to inputs with shape
-    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+    형태의 입력에 해당하고
+    `channels_first`는
+    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    5D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-- If `data_format='channels_first'`:
-    5D tensor with shape:
+    형태의 5차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 5차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-- If `data_format='channels_last'`:
-    5D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)`
-- If `data_format='channels_first'`:
-    5D tensor with shape:
+    형태의 5차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)`
+    형태의 5차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L469)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L469)</span>
 ### GlobalMaxPooling1D
 
 ```python
 keras.layers.GlobalMaxPooling1D()
 ```
 
-Global max pooling operation for temporal data.
+시간 데이터를 위한 전역 최대 풀링 연산.
 
-__Input shape__
+__입력 형태__
 
-3D tensor with shape: `(batch_size, steps, features)`.
+`(batch_size, steps, features)` 형태의 3차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-2D tensor with shape:
-`(batch_size, features)`
+`(batch_size, features)` 형태의 2차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L454)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L454)</span>
 ### GlobalAveragePooling1D
 
 ```python
 keras.layers.GlobalAveragePooling1D()
 ```
 
-Global average pooling operation for temporal data.
+시간 데이터를 위한 전역 평균 풀링 연산.
 
-__Input shape__
+__입력 형태__
 
-3D tensor with shape: `(batch_size, steps, features)`.
+`(batch_size, steps, features)` 형태의 3차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-2D tensor with shape:
-`(batch_size, features)`
+`(batch_size, features)` 형태의 2차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L544)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L544)</span>
 ### GlobalMaxPooling2D
 
 ```python
 keras.layers.GlobalMaxPooling2D(data_format=None)
 ```
 
-Global max pooling operation for spatial data.
+공간 데이터를 위한 전역 최대 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
-    `(batch, height, width, channels)` while `channels_first`
-    corresponds to inputs with shape
-    `(batch, channels, height, width)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는 `(batch, height, width, channels)`
+    형태의 입력에 해당하고
+    `channels_first`는 `(batch, channels, height, width)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    4D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, rows, cols, channels)`
-- If `data_format='channels_first'`:
-    4D tensor with shape:
+    형태의 4차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, rows, cols)`
+    형태의 4차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-2D tensor with shape:
-`(batch_size, channels)`
+`(batch_size, channels)` 형태의 2차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L509)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L509)</span>
 ### GlobalAveragePooling2D
 
 ```python
 keras.layers.GlobalAveragePooling2D(data_format=None)
 ```
 
-Global average pooling operation for spatial data.
+공간 데이터를 위한 전역 평균 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
-    `(batch, height, width, channels)` while `channels_first`
-    corresponds to inputs with shape
-    `(batch, channels, height, width)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는 `(batch, height, width, channels)`
+    형태의 입력에 해당하고
+    `channels_first`는 `(batch, channels, height, width)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    4D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, rows, cols, channels)`
-- If `data_format='channels_first'`:
-    4D tensor with shape:
+    형태의 4차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, rows, cols)`
+    형태의 4차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-2D tensor with shape:
-`(batch_size, channels)`
+`(batch_size, channels)` 형태의 2차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L639)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L639)</span>
 ### GlobalMaxPooling3D
 
 ```python
 keras.layers.GlobalMaxPooling3D(data_format=None)
 ```
 
-Global Max pooling operation for 3D data.
+3차원 데이터를 위한 전역 최대 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-    while `channels_first` corresponds to inputs with shape
-    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+    형태의 입력에 해당하고
+    `channels_first`는
+    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    5D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-- If `data_format='channels_first'`:
-    5D tensor with shape:
+    형태의 5차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 5차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-2D tensor with shape:
-`(batch_size, channels)`
+`(batch_size, channels)` 형태의 2차원 텐서.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L604)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L604)</span>
 ### GlobalAveragePooling3D
 
 ```python
 keras.layers.GlobalAveragePooling3D(data_format=None)
 ```
 
-Global Average pooling operation for 3D data.
+3차원 데이터를 위한 전역 평균 풀링 연산.
 
-__Arguments__
+__인자__
 
-- __data_format__: A string,
-    one of `channels_last` (default) or `channels_first`.
-    The ordering of the dimensions in the inputs.
-    `channels_last` corresponds to inputs with shape
+- __data_format__: 문자열.
+    `channels_last`(기본값) 또는 `channels_first`.
+    입력에서 차원들의 순서.
+    `channels_last`는
     `(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-    while `channels_first` corresponds to inputs with shape
-    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`.
-    It defaults to the `image_data_format` value found in your
-    Keras config file at `~/.keras/keras.json`.
-    If you never set it, then it will be "channels_last".
+    형태의 입력에 해당하고
+    `channels_first`는
+    `(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 입력에 해당한다.
+    지정하지 않으면 케라스 설정 파일 `~/.keras/keras.json`에
+    있는 `image_data_format` 값을 쓴다.
+    그 값을 설정한 적이 없으면 "channels_last"를 쓰게 된다.
 
-__Input shape__
+__입력 형태__
 
-- If `data_format='channels_last'`:
-    5D tensor with shape:
+- `data_format='channels_last'`이면
     `(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)`
-- If `data_format='channels_first'`:
-    5D tensor with shape:
+    형태의 5차원 텐서.
+- `data_format='channels_first'`이면
     `(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)`
+    형태의 5차원 텐서.
 
-__Output shape__
+__출력 형태__
 
-2D tensor with shape:
-`(batch_size, channels)`
+`(batch_size, channels)` 형태의 2차원 텐서.

@@ -24,7 +24,7 @@ pages:
   - 케라스 층에 대해: layers/about-keras-layers.md
   - 기본 층: layers/core.md
   - 합성곱 층: layers/convolutional.md
-  - Pooling Layers: layers/pooling.md
+  - 풀링 층: layers/pooling.md
   - 국소 연결 층: layers/local.md
   - 순환 층: layers/recurrent.md
   - Embedding 층: layers/embeddings.md
