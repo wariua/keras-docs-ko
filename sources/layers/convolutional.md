@@ -16,7 +16,7 @@ keras.layers.Conv1D(filters, kernel_size, strides=1, padding='valid', data_forma
 
 이 층을 모델의 첫 번째 층으로 쓸 때는
 `input_shape` 인자(정수나 `None`으로 된 튜플)를
-주어야 한다. 가령
+줘야 한다. 가령
 128차원 벡터 10개짜리 열에는 `(10, 128)`,
 128차원 벡터들의 가변 길이 열에는 `(None, 128)`.
 
@@ -100,7 +100,7 @@ keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding='valid', data_
 
 이 층을 모델의 첫 번째 층으로 쓸 때는
 키워드 인자 `input_shape`(정수 튜플,
-표본 축은 제외)를 주어야 한다.
+표본 축은 제외)를 줘야 한다.
 가령 `data_format="channels_last"`일 때
 128x128짜리 RGB 그림에는 `input_shape=(128, 128, 3)`.
 
@@ -405,7 +405,7 @@ keras.layers.Conv2DTranspose(filters, kernel_size, strides=(1, 1), padding='vali
 
 이 층을 모델의 첫 번째 층으로 쓸 때는
 키워드 인자 `input_shape`(정수들의 튜플,
-표본 축은 제외)를 주어야 한다.
+표본 축은 제외)를 줘야 한다.
 가령 `data_format="channels_last"`인
 128x128 RGB 그림이라면 `input_shape=(128, 128, 3)`.
 
@@ -519,7 +519,7 @@ keras.layers.Conv3D(filters, kernel_size, strides=(1, 1, 1), padding='valid', da
 
 이 층을 모델의 첫 번째 층으로 쓸 때는
 키워드 인자 `input_shape`(정수 튜플,
-표본 축은 제외)를 주어야 한다.
+표본 축은 제외)를 줘야 한다.
 가령 `data_format="channels_last"`일 때
 단일 채널 128x128x128 볼륨에는 `input_shape=(128, 128, 128, 1)`.
 
@@ -617,7 +617,7 @@ keras.layers.Conv3DTranspose(filters, kernel_size, strides=(1, 1, 1), padding='v
 
 이 층을 모델의 첫 번째 층으로 쓸 때는
 키워드 인자 `input_shape`(정수들의 튜플,
-표본 축은 제외)를 주어야 한다.
+표본 축은 제외)를 줘야 한다.
 가령 `data_format="channels_last"`인
 3채널짜리 128x128x128 볼륨이라면 `input_shape=(128, 128, 128, 3)`.
 
