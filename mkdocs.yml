@@ -29,7 +29,7 @@ pages:
   - 순환 층: layers/recurrent.md
   - Embedding 층: layers/embeddings.md
   - 병합 층: layers/merge.md
-  - Advanced Activations Layers: layers/advanced-activations.md
+  - 고급 활성 층: layers/advanced-activations.md
   - 정규화 층: layers/normalization.md
   - 잡음 층: layers/noise.md
   - Layer wrappers: layers/wrappers.md
