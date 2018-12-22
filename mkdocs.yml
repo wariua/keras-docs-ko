@@ -48,7 +48,7 @@ pages:
 - Backend: backend.md
 - Initializers: initializers.md
 - 정칙화: regularizers.md
-- Constraints: constraints.md
+- 제약: constraints.md
 - 시각화: visualization.md
 - Scikit-learn API: scikit-learn-api.md
 - Utils: utils.md
