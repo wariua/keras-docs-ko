@@ -1,10 +1,10 @@
-site_name: Keras Documentation
+site_name: 케라스 설명서
 theme: readthedocs
 # theme_dir: theme
 docs_dir: sources
 repo_url: http://github.com/keras-team/keras
 site_url: http://keras.io/
-site_description: 'Documentation for Keras, the Python Deep Learning library.'
+site_description: '파이썬 심층학습 라이브러리 케라스 설명서'
 
 dev_addr: '0.0.0.0:8000'
 google_analytics: ['UA-61785484-1', 'keras.io']
