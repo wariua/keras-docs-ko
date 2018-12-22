@@ -60,8 +60,8 @@ __인자__
     딕셔너리이면 출력 이름(문자열)을 스칼라 계수로
     매핑 하기를 기대한다.
 - __sample_weight_mode__: timestep별로 표본에 가중치를
-    줄 필요가 있다면 (2D 가중치) `"temporal"`로 설정하라.
-    `None`으로 하면 표본별 가중치(1D)이다.
+    줄 필요가 있다면 (2차원 가중치) `"temporal"`로 설정하라.
+    `None`으로 하면 표본별 가중치(1차원)이다.
     모델에 입력이 여러 개이면 모드들의
     딕셔너리 내지 리스트를 줘서 각 입력마다 다른
     `sample_weight_mode`를 쓸 수 있다.
@@ -158,7 +158,7 @@ __인자__
     (가중치와 표본이 1:1 대응),
     temporal 데이터인 경우에는
     `(samples, sequence_length)`
-    형태의 2D 배열을 줘서 각 표본의 timestep마다
+    형태의 2차원 배열을 줘서 각 표본의 timestep마다
     다른 가중치를 적용할 수 있다.
     그 경우 `compile()`에서
     `sample_weight_mode="temporal"`을
@@ -230,7 +230,7 @@ __인자__
     (가중치와 표본이 1:1 대응),
     temporal 데이터인 경우에는
     `(samples, sequence_length)`
-    형태의 2D 배열을 줘서 각 표본의 timestep마다
+    형태의 2차원 배열을 줘서 각 표본의 timestep마다
     다른 가중치를 적용할 수 있다.
     그 경우 `compile()`에서
     `sample_weight_mode="temporal"`을
@@ -309,7 +309,7 @@ __인자__
 - __sample_weight__: 선택적. x와 같은 길이의 배열이며,
     각 표본에 대한 모델의 손실에 적용할 가중치를 담는다.
     temporal 데이터인 경우에는 `(samples, sequence_length)`
-    형태의 2D 배열을 줘서 각 표본의 timestep마다
+    형태의 2차원 배열을 줘서 각 표본의 timestep마다
     다른 가중치를 적용할 수 있다.
     그 경우 `compile()`에서 `sample_weight_mode="temporal"`을
     꼭 지정해 줘야 할 것이다.
@@ -354,7 +354,7 @@ __인자__
 - __sample_weight__: 선택적. x와 같은 길이의 배열이며,
     각 표본에 대한 모델의 손실에 적용할 가중치를 담는다.
     temporal 데이터인 경우에는 `(samples, sequence_length)`
-    형태의 2D 배열을 줘서 각 표본의 timestep마다
+    형태의 2차원 배열을 줘서 각 표본의 timestep마다
     다른 가중치를 적용할 수 있다.
     그 경우 `compile()`에서 `sample_weight_mode="temporal"`을
     꼭 지정해 줘야 할 것이다.

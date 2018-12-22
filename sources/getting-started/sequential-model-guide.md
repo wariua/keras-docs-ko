@@ -31,7 +31,7 @@ model.add(Activation('relu'))
 모델에서는 기대하는 입력 형태에 대해 알고 있어야 한다. 그래서 `Sequential` 모델의 첫 번째 층에서 입력 형태에 대한 정보를 받아야 한다. (첫 번째 층에서만이다. 이어지는 층들에서는 자동으로 형태를 추론할 수 있다.) 이를 위한 방법이 여러 가지 있다.
 
 - 첫 번째 층에 `input_shape` 인자 주기. 이 인자는 형태 튜플(정수 또는 `None` 항목으로 이뤄진 튜플. `None`은 기대할 수 있는 모든 양의 정수를 나타냄)이다. `input_shape`에 배치 차원은 포함되지 않는다.
-- `Dense` 같은 일부 2D 층에선 인자 `input_dim`을 통한 입력 형태 지정을 지원하며 어떤 3D temporal 층에선 `input_dim` 및 `input_length` 인자를 지원한다.
+- `Dense` 같은 일부 2차원 층에선 인자 `input_dim`을 통한 입력 형태 지정을 지원하며 어떤 3차원 temporal 층에선 `input_dim` 및 `input_length` 인자를 지원한다.
 - 만약 고정된 배치 크기를 입력으로 지정해야 한다면 (상태 유지형 순환 망에서 유용함) `batch_size` 인자를 층에 줄 수 있다. 층에 `batch_size=32`와 `input_shape=(6, 8)`을 같이 주면 모든 입력 배치가 배치 형태 `(32, 6, 8)`이라고 기대하게 된다.
 
 그래서 다음 두 코드는 정확하게 동등하다.
@@ -280,7 +280,7 @@ model.fit(x_train, y_train, batch_size=16, epochs=10)
 score = model.evaluate(x_test, y_test, batch_size=16)
 ```
 
-### 1D 합성곱을 이용한 순차 분류:
+### 1차원 합성곱을 이용한 순차 분류:
 
 ```python
 from keras.models import Sequential
