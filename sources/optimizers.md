@@ -1,7 +1,7 @@
 
-## 옵티마이저 사용
+## 최적화 사용
 
-옵티마이저는 케라스 모델 컴파일에 꼭 필요한 두 인자 중 하나이다.
+최적화 방식은 케라스 모델 컴파일에 꼭 필요한 두 인자 중 하나이다.
 
 ```python
 from keras import optimizers
@@ -14,18 +14,18 @@ sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd)
 ```
 
-위 예처럼 옵티마이저 인스턴스를 만들어서 `model.compile()`로 전달할 수도 있고 그냥 이름으로 호출할 수도 있다. 후자에서는 그 옵티마이저의 기본 매개변수들을 쓰게 된다.
+위 예처럼 최적화 인스턴스를 만들어서 `model.compile()`로 전달할 수도 있고 그냥 이름으로 호출할 수도 있다. 후자에서는 그 최적화의 기본 매개변수들을 쓰게 된다.
 
 ```python
-# 이름으로 옵티마이저 주기: 기본 매개변수 사용
+# 이름으로 최적화 주기: 기본 매개변수 사용
 model.compile(loss='mean_squared_error', optimizer='sgd')
 ```
 
 ---
 
-## 모든 케라스 옵티마이저에 공통인 매개변수
+## 모든 케라스 최적화에 공통인 매개변수
 
-매개변수 `clipnorm`과 `clipvalue`는 모든 옵티마이저에서 경사 클리핑을 제어하는 데 쓸 수 있다.
+매개변수 `clipnorm`과 `clipvalue`는 모든 최적화에서 경사 클리핑을 제어하는 데 쓸 수 있다.
 
 ```python
 from keras import optimizers
@@ -51,7 +51,7 @@ sgd = optimizers.SGD(lr=0.01, clipvalue=0.5)
 keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
 ```
 
-확률적 경사 하강(stochastic gradient descent) 옵티마이저.
+확률적 경사 하강(stochastic gradient descent) 최적화.
 
 모멘텀, 학습률 감쇄, 네스테로프 모멘텀 지원 포함.
 
@@ -72,13 +72,13 @@ __인자__
 keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
 ```
 
-RMSProp 옵티마이저.
+RMSProp 최적화.
 
-이 옵티마이저의 매개변수들을 기본값 그대로
+이 최적화의 매개변수들을 기본값 그대로
 두기를 권한다.
 (단 학습률은 마음대로 조정할 수 있다.)
 
-이 옵티마이저는 일반적으로 순환 신경망에 좋은 선택지이다.
+이 최적화는 일반적으로 순환 신경망에 좋은 선택지이다.
 
 __인자__
 
@@ -100,14 +100,14 @@ __참고 자료__
 keras.optimizers.Adagrad(lr=0.01, epsilon=None, decay=0.0)
 ```
 
-Adagrad 옵티마이저.
+Adagrad 최적화.
 
-Adagrad는 매개변수별로 학습률이 있는 옵티마이저로,
+Adagrad는 매개변수별로 학습률이 있는 최적화로,
 훈련 중 매개변수가 얼마나 자주 갱신되는가에 따라
 학습률을 조정한다. 매개변수가 많이 갱신될수록
 갱신 폭이 작아진다.
 
-이 옵티마이저의 매개변수들을 기본값 그대로
+이 최적화의 매개변수들을 기본값 그대로
 두기를 권한다.
 
 __인자__
@@ -129,17 +129,17 @@ __참고 자료__
 keras.optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
 ```
 
-Adadelta 옵티마이저.
+Adadelta 최적화.
 
 Adadelta는 Adagrad를 더 견고하게 확장한 것으로,
 모든 과거 경사를 누적하는 대신 경사 갱신의 이동 윈도에 기반해서
 학습률을 조정한다. 그렇게 해서 Adadelta는 갱신이 많이 이뤄진
 상태에서도 계속 학습을 할 수 있다. Adagrad에서와 달리
 Adadelta 원래 버전에서는 초기 학습률을 설정할 필요가 없다.
-이 버전에서는 다른 대부분의 케라스 옵티마이저처럼
+이 버전에서는 다른 대부분의 케라스 최적화처럼
 초기 학습률과 감쇄 인자를 설정할 수 있다.
 
-이 옵티마이저의 매개변수들을 기본값 그대로
+이 최적화의 매개변수들을 기본값 그대로
 두기를 권한다.
 
 __인자__
@@ -164,7 +164,7 @@ __참고 자료__
 keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
 ```
 
-Adam 옵티마이저.
+Adam 최적화.
 
 기본 매개변수 값들은 원저 논문에 제시된 값을 따른다.
 
@@ -192,7 +192,7 @@ __참고 자료__
 keras.optimizers.Adamax(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0)
 ```
 
-Adam 논문 7절에서 온 Adamax 옵티마이저.
+Adam 논문 7절에서 온 Adamax 최적화.
 
 무한 norm을 기반으로 한 Adam의 변형 버전이다.
 기본 매개변수 값들은 논문에 제시된 값을 따른다.
@@ -217,13 +217,13 @@ __참고 자료__
 keras.optimizers.Nadam(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.004)
 ```
 
-네스테로프(Nesterov) Adam 옵티마이저.
+네스테로프(Nesterov) Adam 최적화.
 
 Adam의 핵심이 RMSprop에 모멘텀을 더한 거라면
 Nadam은 Adam RMSprop에 네스테로프 모멘텀을 더한 것이다.
 
 기본 매개변수 값들은 논문에 제시된 값을 따른다.
-이 옵티마이저의 매개변수들을 기본값 그대로
+이 최적화의 매개변수들을 기본값 그대로
 두기를 권한다.
 
 __인자__

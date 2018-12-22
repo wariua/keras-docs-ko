@@ -36,8 +36,8 @@ compile(optimizer, loss=None, metrics=None, loss_weights=None, sample_weight_mod
 
 __인자__
 
-- __optimizer__: 문자열(옵티마이저 이름) 또는 옵티마이저 인스턴스.
-    [옵티마이저](/optimizers) 참고.
+- __optimizer__: 문자열(최적화 이름) 또는 최적화 인스턴스.
+    [최적화](/optimizers) 참고.
 - __loss__: 문자열(목표 함수 이름) 또는 목표 함수.
     [손실](/losses) 참고.
     모델 출력이 여러 개이면 손실들의 딕셔너리 내지 리스트를 줘서
