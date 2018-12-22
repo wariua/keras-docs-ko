@@ -33,7 +33,7 @@ pages:
   - 정규화 층: layers/normalization.md
   - 잡음 층: layers/noise.md
   - 층 래퍼: layers/wrappers.md
-  - Writing your own Keras layers: layers/writing-your-own-keras-layers.md
+  - 새로운 케라스 층 작성: layers/writing-your-own-keras-layers.md
 - 전처리:
   - Sequence Preprocessing: preprocessing/sequence.md
   - Text Preprocessing: preprocessing/text.md
