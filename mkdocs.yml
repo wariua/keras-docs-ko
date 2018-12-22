@@ -46,7 +46,7 @@ pages:
 - 데이터셋: datasets.md
 - 응용 망: applications.md
 - Backend: backend.md
-- Initializers: initializers.md
+- 초기화: initializers.md
 - 정칙화: regularizers.md
 - 제약: constraints.md
 - 시각화: visualization.md

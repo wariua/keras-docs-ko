@@ -1,8 +1,8 @@
-## Usage of initializers
+## 초기화 사용
 
-Initializations define the way to set the initial random weights of Keras layers.
+초기화는 케라스 층들의 최초 임의 가중치를 설정하는 방식을 지정한다.
 
-The keyword arguments used for passing initializers to layers will depend on the layer. Usually it is simply `kernel_initializer` and `bias_initializer`:
+층에 초기화 방식을 전달하는 데 쓰는 키워드 인자가 층에 따라 다를 수 있다. 일반적으로는 `kernel_initializer`와 `bias_initializer`다.
 
 ```python
 model.add(Dense(64,
@@ -10,188 +10,183 @@ model.add(Dense(64,
                 bias_initializer='zeros'))
 ```
 
-## Available initializers
+## 사용 가능한 초기화
 
-The following built-in initializers are available as part of the `keras.initializers` module:
+`keras.initializers` 모듈에 포함된 다음 내장 초기화 방식들을 사용할 수 있다.
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L229)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L229)</span>
 ### Orthogonal
 
 ```python
 keras.initializers.Orthogonal(gain=1.0, seed=None)
 ```
 
-Initializer that generates a random orthogonal matrix.
+난수 직교 행렬을 생성하는 초기화.
 
-__Arguments__
+__인자__
 
-- __gain__: Multiplicative factor to apply to the orthogonal matrix.
-- __seed__: A Python integer. Used to seed the random generator.
+- __gain__: 직교 행렬에 적용할 곱셈 계수.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__References__
+__참고 자료__
 
-Saxe et al., http://arxiv.org/abs/1312.6120
+Saxe 외, http://arxiv.org/abs/1312.6120
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L266)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L266)</span>
 ### Identity
 
 ```python
 keras.initializers.Identity(gain=1.0)
 ```
 
-Initializer that generates the identity matrix.
+단위 행렬을 생성하는 초기화.
 
-Only use for square 2D matrices.
+2차원 정방 행렬에만 사용.
 
-__Arguments__
+__인자__
 
-- __gain__: Multiplicative factor to apply to the identity matrix.
+- __gain__: 단위 행렬에 적용할 곱셈 계수.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L14)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L14)</span>
 ### Initializer
 
 ```python
 keras.initializers.Initializer()
 ```
 
-Initializer base class: all initializers inherit from this class.
+초기화 기반 클래스. 모든 초기화 방식들이 이 클래스를 상속한다.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L33)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L33)</span>
 ### Zeros
 
 ```python
 keras.initializers.Zeros()
 ```
 
-Initializer that generates tensors initialized to 0.
+0으로 초기화된 텐서들을 생성하는 초기화.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L41)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L41)</span>
 ### Ones
 
 ```python
 keras.initializers.Ones()
 ```
 
-Initializer that generates tensors initialized to 1.
+1로 초기화된 텐서들을 생성하는 초기화.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L49)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L49)</span>
 ### Constant
 
 ```python
 keras.initializers.Constant(value=0)
 ```
 
-Initializer that generates tensors initialized to a constant value.
+상수 값으로 초기화된 텐서들을 생성하는 초기화.
 
-__Arguments__
+__인자__
 
-- __value__: float; the value of the generator tensors.
+- __value__: float. 생성 텐서들의 값.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L66)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L66)</span>
 ### RandomNormal
 
 ```python
 keras.initializers.RandomNormal(mean=0.0, stddev=0.05, seed=None)
 ```
 
-Initializer that generates tensors with a normal distribution.
+정규 분포로 텐서들을 생성하는 초기화.
 
-__Arguments__
+__인자__
 
-- __mean__: a python scalar or a scalar tensor. Mean of the random values
-  to generate.
-- __stddev__: a python scalar or a scalar tensor. Standard deviation of the
-  random values to generate.
-- __seed__: A Python integer. Used to seed the random generator.
+- __mean__: 파이썬 스칼라 또는 스칼라 텐서. 생성할 난수 값의 평균.
+- __stddev__: 파이썬 스칼라 또는 스칼라 텐서. 생성할 난수 값의 표준 편차.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L94)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L94)</span>
 ### RandomUniform
 
 ```python
 keras.initializers.RandomUniform(minval=-0.05, maxval=0.05, seed=None)
 ```
 
-Initializer that generates tensors with a uniform distribution.
+균일 분포로 텐서들을 생성하는 초기화.
 
-__Arguments__
+__인자__
 
-- __minval__: A python scalar or a scalar tensor. Lower bound of the range
-  of random values to generate.
-- __maxval__: A python scalar or a scalar tensor. Upper bound of the range
-  of random values to generate.  Defaults to 1 for float types.
-- __seed__: A Python integer. Used to seed the random generator.
+- __minval__: 파이썬 스칼라 또는 스칼라 텐서. 생성할 난수 값 범위의 하한.
+- __maxval__: 파이썬 스칼라 또는 스칼라 텐서. 생성할 난수 값 범위의 상한.
+  float 타입에는 기본값이 1.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L122)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L122)</span>
 ### TruncatedNormal
 
 ```python
 keras.initializers.TruncatedNormal(mean=0.0, stddev=0.05, seed=None)
 ```
 
-Initializer that generates a truncated normal distribution.
+절단 정규 분포를 생성하는 초기화.
 
-These values are similar to values from a `RandomNormal`
-except that values more than two standard deviations from the mean
-are discarded and re-drawn. This is the recommended initializer for
-neural network weights and filters.
+이 값은 `RandomNormal`의 값과 비슷하되
+평균에서 표준 편차 두 배 넘게 떨어진 값은
+버리고 다시 뽑는다. 신경망 가중치 및 필터에
+권장하는 초기화 방식이다.
 
-__Arguments__
+__인자__
 
-- __mean__: a python scalar or a scalar tensor. Mean of the random values
-  to generate.
-- __stddev__: a python scalar or a scalar tensor. Standard deviation of the
-  random values to generate.
-- __seed__: A Python integer. Used to seed the random generator.
+- __mean__: 파이썬 스칼라 또는 스칼라 텐서. 생성할 난수 값의 평균.
+- __stddev__: 파이썬 스칼라 또는 스칼라 텐서. 생성할 난수 값의 표준 편차.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L155)</span>
+<span style="float:right;">[[소스]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L155)</span>
 ### VarianceScaling
 
 ```python
 keras.initializers.VarianceScaling(scale=1.0, mode='fan_in', distribution='normal', seed=None)
 ```
 
-Initializer capable of adapting its scale to the shape of weights.
+가중치 형태에 따라 값 크기를 조정할 수 있는 초기화.
 
-With `distribution="normal"`, samples are drawn from a truncated normal
-distribution centered on zero, with `stddev = sqrt(scale / n)` where n is:
+`distribution="normal"`이면 0이 중심이고 `stddev = sqrt(scale / n)`인
+절단 정규 분포에서 표본을 뽑는다. 여기서 n은
 
-- number of input units in the weight tensor, if mode = "fan_in"
-- number of output units, if mode = "fan_out"
-- average of the numbers of input and output units, if mode = "fan_avg"
+- mode = "fan_in"이면 가중치 텐서의 입력 유닛 수
+- mode = "fan_out"이면 출력 유닛 수
+- mode = "fan_avg"이면 입력 및 출력 유닛 수의 평균
 
-With `distribution="uniform"`,
-samples are drawn from a uniform distribution
-within [-limit, limit], with `limit = sqrt(3 * scale / n)`.
+`distribution='uniform"`이면
+[-limit, limit] 범위 균일 분포에서 표본을 뽑는다.
+`limit = sqrt(3 * scale / n)`이다.
 
-__Arguments__
+__인자__
 
-- __scale__: Scaling factor (positive float).
-- __mode__: One of "fan_in", "fan_out", "fan_avg".
-- __distribution__: Random distribution to use. One of "normal", "uniform".
-- __seed__: A Python integer. Used to seed the random generator.
+- __scale__: 크기 인자 (양수 float).
+- __mode__: "fan_in", "fan_out", "fan_avg" 중 하나.
+- __distribution__: 사용할 난수 분포. "normal" 또는 "uniform".
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__Raises__
+__예외__
 
-- __ValueError__: In case of an invalid value for the "scale", mode" or
-  "distribution" arguments.
+- __ValueError__: "scale", "mode", "distribution" 인자 값이
+  유효하지 않은 경우.
 
 ----
 
@@ -203,24 +198,24 @@ keras.initializers.lecun_uniform(seed=None)
 ```
 
 
-LeCun uniform initializer.
+LeCun 균일 초기화.
 
-It draws samples from a uniform distribution within [-limit, limit]
-where `limit` is `sqrt(3 / fan_in)`
-where `fan_in` is the number of input units in the weight tensor.
+[-limit, limit] 범위 균일 분포에서 표본을 뽑는다.
+여기서 `limit`은 `sqrt(3 / fan_in)`인데
+`fan_in`은 가중치 텐서의 입력 유닛 수이다.
 
-__Arguments__
+__인자__
 
-- __seed__: A Python integer. Used to seed the random generator.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__Returns__
+__반환__
 
-An initializer.
+initializer.
 
-__References__
+__참고 자료__
 
 LeCun 98, Efficient Backprop,
-- __http__://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf
+- http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf
 
 ----
 
@@ -232,25 +227,25 @@ keras.initializers.glorot_normal(seed=None)
 ```
 
 
-Glorot normal initializer, also called Xavier normal initializer.
+Glorot 정규 초기화. Xavier 정규 초기화라고도 함.
 
-It draws samples from a truncated normal distribution centered on 0
-with `stddev = sqrt(2 / (fan_in + fan_out))`
-where `fan_in` is the number of input units in the weight tensor
-and `fan_out` is the number of output units in the weight tensor.
+0이 중심이고 `stddev = sqrt(2 / (fan_in + fan_out))`인
+절단 정규 분포에서 표본을 뽑는다.
+여기서 `fan_in`은 가중치 텐서의 입력 유닛 수이고
+`fan_out`은 가중치 텐서의 출력 유닛 수이다.
 
-__Arguments__
+__인자__
 
-- __seed__: A Python integer. Used to seed the random generator.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__Returns__
+__반환__
 
-An initializer.
+initializer.
 
-__References__
+__참고 자료__
 
 Glorot & Bengio, AISTATS 2010
-- __http__://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+- http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
 
 ----
 
@@ -262,25 +257,25 @@ keras.initializers.glorot_uniform(seed=None)
 ```
 
 
-Glorot uniform initializer, also called Xavier uniform initializer.
+Glorot 균일 초기화. Xavier 균일 초기화라고도 함.
 
-It draws samples from a uniform distribution within [-limit, limit]
-where `limit` is `sqrt(6 / (fan_in + fan_out))`
-where `fan_in` is the number of input units in the weight tensor
-and `fan_out` is the number of output units in the weight tensor.
+[-limit, limit] 범위 균일 분포에서 표본을 뽑는다.
+여기서 `limit`은 `sqrt(6 / (fan_in + fan_out))`인데
+`fan_in`은 가중치 텐서의 입력 유닛 수이고
+`fan_out`은 가중치 텐서의 출력 유닛 수이다.
 
-__Arguments__
+__인자__
 
-- __seed__: A Python integer. Used to seed the random generator.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__Returns__
+__반환__
 
-An initializer.
+initializer.
 
-__References__
+__참고 자료__
 
 Glorot & Bengio, AISTATS 2010
-- __http__://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+- http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
 
 ----
 
@@ -292,23 +287,23 @@ keras.initializers.he_normal(seed=None)
 ```
 
 
-He normal initializer.
+He 정규 초기화.
 
-It draws samples from a truncated normal distribution centered on 0
-with `stddev = sqrt(2 / fan_in)`
-where `fan_in` is the number of input units in the weight tensor.
+0이 중심이고 `stddev = sqrt(2 / fan_in)`인
+절단 정규 분포에서 표본을 뽑는다.
+여기서 `fan_in`은 가중치 텐서의 입력 유닛 수이다.
 
-__Arguments__
+__인자__
 
-- __seed__: A Python integer. Used to seed the random generator.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__Returns__
+__반환__
 
-An initializer.
+initializer.
 
-__References__
+__참고 자료__
 
-He et al., http://arxiv.org/abs/1502.01852
+He 외, http://arxiv.org/abs/1502.01852
 
 ----
 
@@ -320,21 +315,21 @@ keras.initializers.lecun_normal(seed=None)
 ```
 
 
-LeCun normal initializer.
+LeCun 정규 초기화.
 
-It draws samples from a truncated normal distribution centered on 0
-with `stddev = sqrt(1 / fan_in)`
-where `fan_in` is the number of input units in the weight tensor.
+0이 중심이고 `stddev = sqrt(1 / fan_in)`인
+절단 정규 분포에서 표본을 뽑는다.
+여기서 `fan_in`은 가중치 텐서의 입력 유닛 수이다.
 
-__Arguments__
+__인자__
 
-- __seed__: A Python integer. Used to seed the random generator.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__Returns__
+__반환__
 
-An initializer.
+initializer.
 
-__References__
+__참고 자료__
 
 - [Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)
 - [Efficient Backprop](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)
@@ -349,41 +344,41 @@ keras.initializers.he_uniform(seed=None)
 ```
 
 
-He uniform variance scaling initializer.
+He 균일 분산 스케일링 초기화.
 
-It draws samples from a uniform distribution within [-limit, limit]
-where `limit` is `sqrt(6 / fan_in)`
-where `fan_in` is the number of input units in the weight tensor.
+[-limit, limit] 범위 균일 분포에서 표본을 뽑는다.
+여기서 `limit`은 `sqrt(6 / fan_in)`인데
+`fan_in`은 가중치 텐서의 입력 유닛 수이다.
 
-__Arguments__
+__인자__
 
-- __seed__: A Python integer. Used to seed the random generator.
+- __seed__: 파이썬 정수. 난수 생성기 시드로 사용.
 
-__Returns__
+__반환__
 
-An initializer.
+initializer.
 
-__References__
+__참고 자료__
 
-He et al., http://arxiv.org/abs/1502.01852
+He 외, http://arxiv.org/abs/1502.01852
 
 
 
-An initializer may be passed as a string (must match one of the available initializers above), or as a callable:
+초기화 방식을 (위의 가용 초기화 방식들 중 하나와 일치하는) 문자열로 전달할 수도 있고 호출 가능 객체로 전달할 수도 있다.
 
 ```python
 from keras import initializers
 
 model.add(Dense(64, kernel_initializer=initializers.random_normal(stddev=0.01)))
 
-# also works; will use the default parameters.
+# 이렇게도 가능하다. 매개변수 기본값을 쓴다.
 model.add(Dense(64, kernel_initializer='random_normal'))
 ```
 
 
-## Using custom initializers
+## 자체 초기화 사용하기
 
-If passing a custom callable, then it must take the argument `shape` (shape of the variable to initialize) and `dtype` (dtype of generated values):
+자체적인 호출 가능 객체를 전달하려는 경우에는 그 객체가 `shape`(초기화할 변수의 형태)와 `dtype`(생성 값의 dtype)을 인자로 받아야 한다.
 
 ```python
 from keras import backend as K
