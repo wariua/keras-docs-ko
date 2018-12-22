@@ -52,7 +52,7 @@ keras.callbacks.BaseLogger(stateful_metrics=None)
 __인자__
 
 - __stateful_metrics__: 한 에포크에서 평균하지 *말아야 할*
-    지표들의 문자열 이름의 iterable.
+    지표들의 문자열 이름의 이터러블.
     `on_epoch_end`에서 이 목록의 지표들은 원래 값 그대로 기록한다.
     `on_epoch_end`에서 나머지는 모두 평균을 내게 된다.
 
@@ -84,7 +84,7 @@ __인자__
     진행 막대가 처리 단계(배치)와
     처리 표본 중 어느 쪽을 기준으로 하는지이다.
 - __stateful_metrics__: 한 에포크에서 평균하지 *말아야 할*
-    지표들의 문자열 이름의 iterable.
+    지표들의 문자열 이름의 이터러블.
     이 목록의 지표들은 원래 값 그대로 기록한다.
     나머지(가령 손실 등)는 모두 평균을 내게 된다.
 
@@ -338,7 +338,7 @@ keras.callbacks.CSVLogger(filename, separator=',', append=False)
 
 에포크별 결과를 csv 파일로 보내는 콜백.
 
-np.ndarray 같은 1차원 iterable을 포함해
+np.ndarray 같은 1차원 이터러블을 포함해
 문자열로 표현 가능한 모든 값들을 지원한다.
 
 __예시__
