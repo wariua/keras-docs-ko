@@ -9,7 +9,7 @@ keras.layers.BatchNormalization(axis=-1, momentum=0.99, epsilon=0.001, center=Tr
 
 각 배치마다 앞 층의 활성을 정규화한다.
 즉 평균 활성을 0 근처로 유지하고 활성 표준 편차를
-1 근처로 유지하는 변형을 적용한다.
+1 근처로 유지하는 변환을 적용한다.
 
 __인자__
 

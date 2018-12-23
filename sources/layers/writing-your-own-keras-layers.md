@@ -6,7 +6,7 @@
 
 - `build(input_shape)`: 가중치를 여기서 정의하게 된다. 이 메소드 마지막에서 `self.built = True` 설정을 해야 하는데, `super([Layer], self).build()`를 호출하는 것으로도 가능하다.
 - `call(x)`: 층의 로직이 있는 곳이다. 층에서 마스킹을 지원하게 하고 싶은 게 아니라면 `call`의 첫 번째 인자인 입력 텐서에만 신경 쓰면 된다.
-- `compute_output_shape(input_shape)`: 층에서 입력의 형태를 변경하는 경우에는 여기서 형태 변형 로직을 명시해야 한다. 이를 통해 케라스가 자동 형태 추론을 할 수 있게 된다.
+- `compute_output_shape(input_shape)`: 층에서 입력의 형태를 변경하는 경우에는 여기서 형태 변환 로직을 명시해야 한다. 이를 통해 케라스가 자동 형태 추론을 할 수 있게 된다.
 
 ```python
 from keras import backend as K
