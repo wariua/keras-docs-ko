@@ -35,7 +35,7 @@ pages:
   - 층 래퍼: layers/wrappers.md
   - 새로운 케라스 층 작성: layers/writing-your-own-keras-layers.md
 - 전처리:
-  - Sequence Preprocessing: preprocessing/sequence.md
+  - 열 전처리: preprocessing/sequence.md
   - Text Preprocessing: preprocessing/text.md
   - Image Preprocessing: preprocessing/image.md
 - 손실: losses.md
