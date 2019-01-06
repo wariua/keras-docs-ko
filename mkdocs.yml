@@ -36,7 +36,7 @@ pages:
   - 새로운 케라스 층 작성: layers/writing-your-own-keras-layers.md
 - 전처리:
   - 열 전처리: preprocessing/sequence.md
-  - Text Preprocessing: preprocessing/text.md
+  - 텍스트 전처리: preprocessing/text.md
   - Image Preprocessing: preprocessing/image.md
 - 손실: losses.md
 - 지표: metrics.md
