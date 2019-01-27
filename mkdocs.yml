@@ -37,7 +37,7 @@ pages:
 - 전처리:
   - 열 전처리: preprocessing/sequence.md
   - 텍스트 전처리: preprocessing/text.md
-  - Image Preprocessing: preprocessing/image.md
+  - 이미지 전처리: preprocessing/image.md
 - 손실: losses.md
 - 지표: metrics.md
 - 최적화: optimizers.md
