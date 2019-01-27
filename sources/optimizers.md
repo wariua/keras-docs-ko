@@ -84,7 +84,7 @@ __인자__
 
 - __lr__: float >= 0. 학습률.
 - __rho__: float >= 0.
-- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __epsilon__: float >= 0. 퍼징 인자. `None`이면 `K.epsilon()` 사용.
 - __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
 
 __참고 자료__
@@ -148,7 +148,7 @@ __인자__
     기본값 그대로 두기를 권한다.
 - __rho__: float >= 0. Adadelta 감쇄 인자. 각 time step에서
     경사를 어느 비율만큼 남겨 둘 것인지에 해당.
-- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __epsilon__: float >= 0. 퍼징 인자. `None`이면 `K.epsilon()` 사용.
 - __decay__: float >= 0. 초기 학습률 감쇄.
 
 __참고 자료__
@@ -173,7 +173,7 @@ __인자__
 - __lr__: float >= 0. 학습률.
 - __beta_1__: float, 0 < beta < 1. 일반적으로 1에 가까움.
 - __beta_2__: float, 0 < beta < 1. 일반적으로 1에 가까움.
-- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __epsilon__: float >= 0. 퍼징 인자. `None`이면 `K.epsilon()` 사용.
 - __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
 - __amsgrad__: bool. 논문 "On the Convergence of Adam and
     Beyond"에 있는 이 알고리즘의 AMSGrad 버전 적용 여부.
@@ -201,7 +201,7 @@ __인자__
 
 - __lr__: float >= 0. 학습률.
 - __beta_1/beta_2__: floats, 0 < beta < 1. 일반적으로 1에 가까움.
-- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __epsilon__: float >= 0. 퍼징 인자. `None`이면 `K.epsilon()` 사용.
 - __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
 
 __참고 자료__
@@ -230,7 +230,7 @@ __인자__
 
 - __lr__: float >= 0. 학습률.
 - __beta_1/beta_2__: floats, 0 < beta < 1. 일반적으로 1에 가까움.
-- __epsilon__: float >= 0. fuzz 인자. `None`이면 `K.epsilon()` 사용.
+- __epsilon__: float >= 0. 퍼징 인자. `None`이면 `K.epsilon()` 사용.
 
 __참고 자료__
 
