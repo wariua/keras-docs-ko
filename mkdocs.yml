@@ -45,7 +45,7 @@ pages:
 - 콜백: callbacks.md
 - 데이터셋: datasets.md
 - 응용 망: applications.md
-- Backend: backend.md
+- 백엔드: backend.md
 - 초기화: initializers.md
 - 정칙화: regularizers.md
 - 제약: constraints.md
