@@ -176,7 +176,7 @@ __인자__
 - __epsilon__: float >= 0. 퍼징 인자. `None`이면 `K.epsilon()` 사용.
 - __decay__: float >= 0. 각 갱신마다의 학습률 감쇄.
 - __amsgrad__: bool. 논문 "On the Convergence of Adam and
-    Beyond"에 있는 이 알고리즘의 AMSGrad 버전 적용 여부.
+    Beyond"에 있는 이 알고리듬의 AMSGrad 버전 적용 여부.
 
 __참고 자료__
 

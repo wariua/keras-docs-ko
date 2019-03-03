@@ -3534,7 +3534,7 @@ keras.backend.ctc_batch_cost(y_true, y_pred, input_length, label_length)
 ```
 
 
-각 배치 요소에 CTC 손실 알고리즘을 돌린다.
+각 배치 요소에 CTC 손실 알고리듬을 돌린다.
 
 __인자__
 
