@@ -1,93 +1,93 @@
-# On Github Issues and Pull Requests
+# 깃허브 이슈와 당김 요청
 
-Found a bug? Have a new feature to suggest? Want to contribute changes to the codebase? Make sure to read this first.
+버그를 찾았는가? 제안하고 싶은 기능이 있는가? 코드베이스에 변경 사항을 기여하고 싶은가? 그렇다면 먼저 이 글을 읽자.
 
-## Bug reporting
+## 버그 보고하기
 
-Your code doesn't work, and you have determined that the issue lies with Keras? Follow these steps to report a bug.
+코드가 제대로 동작하지 않아서 살펴보니 케라스에 이슈가 있는 걸 알게 됐는가? 그렇다면 다음 단계에 따라 버그를 보고하면 된다.
 
-1. Your bug may already be fixed. Make sure to update to the current Keras master branch, as well as the latest Theano/TensorFlow/CNTK master branch.
-To easily update Theano: `pip install git+git://github.com/Theano/Theano.git --upgrade`
+1. 버그가 이미 고쳐졌을 수도 있다. 최신 케라스 master 브랜치로 갱신하고 테아노/텐서플로우/CNTK도 최신 master 브랜치로 갱신하자.
+테아노를 쉽게 업데이트하려면:  `pip install git+git://github.com/Theano/Theano.git --upgrade`
 
-2. Search for similar issues. Make sure to delete `is:open` on the issue search to find solved tickets as well. It's possible somebody has encountered this bug already. Also remember to check out Keras' [FAQ](http://keras.io/faq/). Still having a problem? Open an issue on Github to let us know.
+2. 비슷한 이슈를 검색하자. 이슈 검색 시 `is:open` 조건을 빼서 해결된 티켓들도 검색하게 하자. 이미 누군가 이 버그와 맞닥뜨렸을 수 있다. 케라스 [FAQ](http://keras.io/faq/)를 확인하는 것도 잊지 말자. 그래도 문제가 해결되지 않았다면? 깃허브에 이슈를 열어서 알려 주자.
 
-3. Make sure you provide us with useful information about your configuration: what OS are you using? What Keras backend are you using? Are you running on GPU? If so, what is your version of Cuda, of cuDNN? What is your GPU?
+3. 동작 환경에 대한 유용한 정보를 제공해 줘야 한다. 사용하는 OS, 사용하는 케라스 백엔드, GPU에서 돌리는지, 그렇다면 Cuda와 cuDNN 버전은 뭔지, GPU는 뭔지 같은 것들이다.
 
-4. Provide us with a script to reproduce the issue. This script should be runnable as-is and should not require external data download (use randomly generated data if you need to run a model on some test data). We recommend that you use Github Gists to post your code. Any issue that cannot be reproduced is likely to be closed.
+4. 이슈를 재연하기 위한 스크립트를 제공하자. 그 스크립트는 가급적 있는 그대로 실행 가능해야 하고 외부 데이터 내려받기는 필요치 않아야 한다. (어떤 테스트 데이터로 모델을 돌려야 한다면 난수적으로 생성한 데이터를 쓰자.) 깃허브 Gists를 이용해 코드를 올리는 걸 권한다. 재연할 수 없는 이슈는 그냥 닫힐 가능성이 높다.
 
-5. If possible, take a stab at fixing the bug yourself --if you can!
+5. 가능하다면 스스로 버그 수정을 시도해 보자. 할 수 있다!
 
-The more information you provide, the easier it is for us to validate that there is a bug and the faster we'll be able to take action. If you want your issue to be resolved quickly, following the steps above is crucial.
-
----
-
-## Requesting a Feature
-
-You can also use Github issues to request features you would like to see in Keras, or changes in the Keras API.
-
-1. Provide a clear and detailed explanation of the feature you want and why it's important to add. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on library for Keras. It is crucial for Keras to avoid bloating the API and codebase.
-
-2. Provide code snippets demonstrating the API you have in mind and illustrating the use cases of your feature. Of course, you don't need to write any real code at this point!
-
-3. After discussing the feature you may choose to attempt a Pull Request. If you're at all able, start writing some code. We always have more work to do than time to do it. If you can write some code then that will speed the process along.
-
+정보를 많이 제공해 줄수록 더 빨리 버그 확인이 이뤄지고 더 빨리 행동이 이뤄질 수 있다. 이슈가 빨리 해결되길 바란다면 꼭 위 단계들을 따를 필요가 있다.
 
 ---
 
-## Requests for Contributions
+## 기능 요청하기
 
-[This is the board](https://github.com/keras-team/keras/projects/1) where we list current outstanding issues and features to be added. If you want to start contributing to Keras, this is the place to start.
+깃허브 이슈를 이용해 케라스에 있었으면 싶은 기능을 요청하거나 케라스 API 변경을 요청할 수도 있다.
+
+1. 원하는 기능을 명확하고 자세하게 설명하고 추가해야만 하는 이유를 적자. 일부 사용자가 아니라 대다수 사용자에게 유용할 만한 기능이어야 한다는 점을 기억하자. 일부 사용자만을 대상으로 한다면 케라스용 애드온 라이브러리 작성을 고려해 보자. 케라스 API와 코드베이스가 너무 복잡해지는 걸 피해야 한다.
+
+2. 생각 중인 API를 시연하고 기능의 사용례를 보여 주는 코드 조각을 제공하자. 물론 이 시점까지는 진짜 코드를 작성할 필요는 없다.
+
+3. 기능에 대해 논의한 다음 당김 요청을 시도하기로 할 수도 있다. 어떻게든 가능하다면 코드를 좀 작성하자. 케라스 팀은 언제나 할 일이 쌓여 있다. 코드를 작성할 수 있다면 진행이 빨라지게 된다.
 
 
 ---
 
-## Pull Requests
+## 기여 요청
 
-**Where should I submit my pull request?**
+현재 미해결 이슈와 추가 예정 기능들의 [목록이 있다](https://github.com/keras-team/keras/projects/1). 케라스에 기여하고 싶다면 여기가 출발점이 될 수 있다.
 
-1. **Keras improvements and bugfixes** go to the [Keras `master` branch](https://github.com/keras-team/keras/tree/master).
-2. **Experimental new features** such as layers and datasets go to [keras-contrib](https://github.com/farizrahman4u/keras-contrib). Unless it is a new feature listed in [Requests for Contributions](https://github.com/keras-team/keras/projects/1), in which case it belongs in core Keras. If you think your feature belongs in core Keras, you can submit a design doc to explain your feature and argue for it (see explanations below).
-
-Please note that PRs that are primarily about **code style** (as opposed to fixing bugs, improving docs, or adding new functionality) will likely be rejected.
-
-Here's a quick guide to submitting your improvements:
-
-1. If your PR introduces a change in functionality, make sure you start by writing a design doc and sending it to the Keras mailing list to discuss whether the change should be made, and how to handle it. This will save you from having your PR closed down the road! Of course, if your PR is a simple bug fix, you don't need to do that. The process for writing and submitting design docs is as follow:
-    - Start from [this Google Doc template](https://docs.google.com/document/d/1ZXNfce77LDW9tFAj6U5ctaJmI5mT7CQXOFMEAZo-mAA/edit#), and copy it to new Google doc.
-    - Fill in the content. Note that you will need to insert code examples. To insert code, use a Google Doc extension such as [CodePretty](https://chrome.google.com/webstore/detail/code-pretty/igjbncgfgnfpbnifnnlcmjfbnidkndnh?hl=en) (there are several such extensions available).
-    - Set sharing settings to "everyone with the link is allowed to comment"
-    - Send the document to `keras-users@googlegroups.com` with a subject that starts with `[API DESIGN REVIEW]` (all caps) so that we notice it.
-    - Wait for comments, and answer them as they come. Edit the proposal as necessary.
-    - The proposal will finally be approved or rejected. Once approved, you can send out Pull Requests or ask others to write Pull Requests.
-
-
-2. Write the code (or get others to write it). This is the hard part!
-
-3. Make sure any new function or class you introduce has proper docstrings. Make sure any code you touch still has up-to-date docstrings and documentation. **Docstring style should be respected.** In particular, they should be formatted in MarkDown, and there should be sections for `Arguments`, `Returns`, `Raises` (if applicable). Look at other docstrings in the codebase for examples.
-
-4. Write tests. Your code should have full unit test coverage. If you want to see your PR merged promptly, this is crucial.
-
-5. Run our test suite locally. It's easy: from the Keras folder, simply run: `py.test tests/`.
-    - You will need to install the test requirements as well: `pip install -e .[tests]`.
-
-6. Make sure all tests are passing:
-    - with the Theano backend, on Python 2.7 and Python 3.6. Make sure you have the development version of Theano.
-    - with the TensorFlow backend, on Python 2.7 and Python 3.6. Make sure you have the development version of TensorFlow.
-    - with the CNTK backend, on Python 2.7 and Python 3.6. Make sure you have the development version of CNTK.
-
-7. We use PEP8 syntax conventions, but we aren't dogmatic when it comes to line length. Make sure your lines stay reasonably sized, though. To make your life easier, we recommend running a PEP8 linter:
-    - Install PEP8 packages: `pip install pep8 pytest-pep8 autopep8`
-    - Run a standalone PEP8 check: `py.test --pep8 -m pep8`
-    - You can automatically fix some PEP8 error by running: `autopep8 -i --select <errors> <FILENAME>` for example: `autopep8 -i --select E128 tests/keras/backend/test_backends.py`
-
-8. When committing, use appropriate, descriptive commit messages.
-
-9. Update the documentation. If introducing new functionality, make sure you include code snippets demonstrating the usage of your new feature.
-
-10. Submit your PR. If your changes have been approved in a previous discussion, and if you have complete (and passing) unit tests as well as proper docstrings/documentation, your PR is likely to be merged promptly.
 
 ---
 
-## Adding new examples
+## 당김 요청
 
-Even if you don't contribute to the Keras source code, if you have an application of Keras that is concise and powerful, please consider adding it to our collection of examples. [Existing examples](https://github.com/keras-team/keras/tree/master/examples) show idiomatic Keras code: make sure to keep your own script in the same spirit.
+**내 당김 요청(pull request)을 어디에 제출해야 하나?**
+
+1. **케라스 개선 및 버그 수정**은 [케라스 `master` 브랜치](https://github.com/keras-team/keras/tree/master)로 간다.
+2. **실험적인 새 기능**(층이나 데이터셋)은 [keras-contrib](https://github.com/farizrahman4u/keras-contrib)로 간다. 단, [기여 요청](https://github.com/keras-team/keras/projects/1)에 있는 새 기능인 경우에는 케라스 코어로 간다. 기능이 케라스 코어에 속하는 것 같다면 기능을 설명하는 설계 문서를 제출하고 사람들을 설득해야 한다. (아래 설명 참고.)
+
+(버그 수정이나 문서 개선, 새 기능성 추가가 아니라) 주로 **코드 스타일**에 대한 PR은 거부될 가능성이 높다는 점을 유념해 달라.
+
+개선 사항 제출 방법을 간단히 설명하면 다음과 같다.
+
+1. PR에서 기능성을 변경한다면 먼저 설계 문서를 작성해 케라스 메일링 리스트로 보내서 그 변경을 해야 하는지, 그리고 어떻게 해결할지 논의하자. 이렇게 하면 PR이 도중에 닫혀 버리는 걸 방지할 수 있다. 물론 PR이 단순한 버그 수정이라면 그렇게 할 필요가 없다. 설계 문서 작성 및 제출 과정은 다음과 같다.
+    - [구글 문서 템플릿](https://docs.google.com/document/d/1ZXNfce77LDW9tFAj6U5ctaJmI5mT7CQXOFMEAZo-mAA/edit#)에서 시작하자. 복사해서 새 구글 문서를 만든다.
+    - 내용을 채우자. 예시 코드를 집어넣어야 할 텐데, 코드 삽입 시 [CodePretty](https://chrome.google.com/webstore/detail/code-pretty/igjbncgfgnfpbnifnnlcmjfbnidkndnh?hl=en) 같은 구글 문서 확장을 이용하자. (비슷한 확장들이 여러 가지 있다.)
+    - 공유 설정을 "everyone with the link is allowed to comment"로 설정하자.
+    - 그 문서를 `keras-users@googlegroups.com`으로 보내자. 알아보기 쉽도록 제목이 `[API DESIGN REVIEW]`(모두 대문자)로 시작하게 하자.
+    - 코멘트를 기다리다가 들어오는 대로 답을 하자. 필요시 제안 내용을 고치자.
+    - 제안이 최종적으로 승인되거나 거부될 것이다. 승인되고 나면 당김 요청을 보내거나 다른 이에게 당김 요청을 작성해 달라고 부탁할 수 있다.
+
+
+2. 코드를 작성하자. (또는 다른 이가 작성하게 하자.) 여기가 어렵다!
+
+3. 새로 도입한 함수나 클래스에 독스트링이 제대로 있는지 확인하자. 건드린 코드의 독스트링과 문서가 최신 내용을 반영하고 있는지 확인하자. **독스트링 스타일을 준수해야 한다.** 특히 마크다운 형식이어야 하고 `Arguments`, `Returns`, (해당 시) `Raises` 절이 있어야 한다. 코드베이스의 다른 독스트링을 예로 삼으면 된다.
+
+4. 테스트를 작성하자. 작성한 코드를 유닛 테스트로 모두 커버해야 한다. PR이 즉시 병합되는 걸 보고 싶다면 이 단계가 중요하다.
+
+5. 로컬에서 테스트 스위트를 실행해 보자. 간단하다. 케라스 폴더에서 `py.test tests/`를 실행하기만 하면 된다.
+    - 테스트용 의존 패키지들도 설치해야 할 것이다. `pip install -e .[tests]`
+
+6. 모든 테스트가 통과하는지 확인하자.
+    - 테아노 백엔드와 파이썬 2.7 및 파이썬 3.6에서. 테아노 개발 버전을 쓰자.
+    - 텐서플로우 백엔드와 파이썬 2.7 및 파이썬 3.6에서. 텐서플로우 개발 버전을 쓰자.
+    - CNTK 백엔드와 파이썬 2.7 및 파이썬 3.6에서. CNTK 개발 버전을 쓰자.
+
+7. PEP8 문법 관행을 따르지만 행 길이에 대해선 교조적이지 않다. 그렇지만 행이 적당한 길이가 되도록 하자. 편하게 가고 싶다면 PEP8 린터를 돌리는 걸 권한다.
+    - PEP8 패키지들 설치: `pip install pep8 pytest-pep8 autopep8`
+    - 단독 PEP8 검사 수행: `py.test --pep8 -m pep8`
+    - 원한다면 일부 PEP8 오류를 자동으로 고치기: `autopep8 -i --select <errors> <FILENAME>`. 예: `autopep8 -i --select E128 tests/keras/backend/test_backends.py`
+
+8. 커밋할 때 내용을 설명하는 적절한 커밋 메시지를 쓰자.
+
+9. 문서를 갱신하자. 새 기능성을 도입하는 거라면 새 기능 사용법을 보여 주는 코드 조각을 포함시키자.
+
+10. PR을 제출하자. 앞선 논의에서 변경 내용이 승인되었고, 독스트링/문서를 제대로 완성했고 유닛 테스트도 완성했다면 (그리고 테스트가 통과한다면) 아마 PR이 즉시 병합될 것이다.
+
+---
+
+## 새 예시 추가하기
+
+케라스 소스 코드에는 기여하지 않더라도 간결하고 강력한 케라스 응용이 있다면 예시 모음에 추가하는 걸 고려해 보자. [기존 예시들](https://github.com/keras-team/keras/tree/master/examples)에서 케라스 코드 스타일을 볼 수 있다. 추가하려는 스크립트도 한 사람이 작성한 것처럼 만들자.
